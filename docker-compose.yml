@@ -1,0 +1,15 @@
+services:
+  neo4j:
+    image: neo4j:4.4.11
+    container_name: neo4jTcc
+    environment:
+      - NEO4J_AUTH=neo4j/test
+      - NEO4JLABS_PLUGINS=["apoc"]
+      - APOC_IMPORT_FILE_ENABLED=true
+    volumes:
+      - neo4j_data:/data
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+volumes:
+  neo4j_data:
