@@ -1,3 +1,5 @@
 cache
 .venv
 .env
+queries.md
+.venv_qiskit_1.0
