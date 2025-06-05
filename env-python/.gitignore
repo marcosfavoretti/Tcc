@@ -3,3 +3,4 @@ cache
 .env
 queries.md
 .venv_qiskit_1.0
+.venv_qiskit_dev
