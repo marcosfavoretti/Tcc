@@ -1,0 +1,15 @@
+<p-listbox 
+  [options]="algoritmos" 
+  [(ngModel)]="algoritmosSelecionados" 
+  optionLabel="name" 
+  [multiple]="true" 
+  [checkbox]="true"
+  (onChange)="onSelecionadosChange()"
+  class="w-full md:w-56"
+>
+  <ng-template let-item pTemplate="item">
+    <div class="flex items-center gap-2">
+      <div>{{ item.name }}</div>
+    </div>
+  </ng-template>
+</p-listbox>

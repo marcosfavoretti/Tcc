@@ -4,8 +4,8 @@ services:
     container_name: neo4jTcc
     environment:
       - NEO4J_AUTH=neo4j/test
-      - NEO4JLABS_PLUGINS=["apoc"]
-      - APOC_IMPORT_FILE_ENABLED=true
+      # - NEO4JLABS_PLUGINS=["apoc"]
+      # - APOC_IMPORT_FILE_ENABLED=true
     volumes:
       - neo4j_data:/data
       - neo4j_plugins:/plugins

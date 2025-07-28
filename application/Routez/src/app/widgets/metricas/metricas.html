@@ -1,0 +1,10 @@
+<div class="d-flex flex-column">
+    <ul class="list-group list-unstyled">
+        @for (entries of getMetricasEntries(); track $index) {
+            <li class="list-group-item">
+                <span><strong>{{entries[0]}}: </strong></span>
+                <span>{{entries[1]}}</span>
+            </li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,19 @@
+<div class="vh-100 bg-secondary-subtle px-1 py-2">
+  <p-splitter [panelSizes]="[30, 70]" [style]="{ height: '100%' }">
+    <ng-template #panel>
+      <app-side-bar></app-side-bar>
+    </ng-template>
+    <ng-template #panel>
+      <!-- <app-map></app-map> -->
+      @if(!gerenciaAlgoritmoResService.respostas.length) {
+        <app-app-page-place-holder></app-app-page-place-holder>
+      }
+      @else {
+        <app-metricas></app-metricas>
+        <app-map [selectable]="false"
+         [ruas]="getRepostas()"
+          [preSelectPoint]="pickListService.pois.concat(!pickListService.ponto_inicial? [] : pickListService.ponto_inicial)"></app-map>
+      }
+    </ng-template>
+  </p-splitter>
+</div>

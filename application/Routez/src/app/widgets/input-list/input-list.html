@@ -1,0 +1,20 @@
+<div class="d-flex flex-column gap-2">
+    <p class="small">
+        <strong>{{label}}:</strong>
+    </p>
+    <ul class="list-group">
+        @for (item of itens; track $index) {
+            <li class="list-group-item">
+                <app-item-list [cor]="getCor($index)"  [ponto]="item"></app-item-list>
+            </li>
+        }
+    </ul>
+    @if ((tipo==='INICIAL' && itens.length < 1)||tipo==='POI') {
+        <button
+        (click)="showForms()"
+        class="btn btn-outline-secondary border-0 d-flex align-items-center gap-1">
+            <i class="pi pi-plus"></i> 
+            <span>adicionar ponto</span>
+        </button>
+    }
+</div>

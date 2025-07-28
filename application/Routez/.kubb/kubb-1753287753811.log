@@ -1,0 +1,345 @@
+[23/07/2025, 13:22:33]: Executing pluginKey plugin-oas.1 | buildStart
+[23/07/2025, 13:22:33]: Executing pluginKey plugin-ts.1 | buildStart
+[23/07/2025, 13:22:33]: Executing pluginKey plugin-client.1 | buildStart
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-oas",1]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name 'AlgoritmosDtoAlgoritmo' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name 'AlgoritmosDtoAlgoritmo' and type 'type' |  "AlgoritmosDtoAlgoritmo"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-oas.1 | Resolving path 'algoritmosDto.json'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-oas.1 | Resolving path 'algoritmosDto.json' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\schemas\\algoritmosDto.json"
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-oas",1]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name 'AlgoritmosResponseDtoAlgoritmo' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name 'AlgoritmosResponseDtoAlgoritmo' and type 'type' |  "AlgoritmosResponseDtoAlgoritmo"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-oas.1 | Resolving path 'algoritmosResponseDto.json'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-oas.1 | Resolving path 'algoritmosResponseDto.json' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\schemas\\algoritmosResponseDto.json"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-oas.1 | Resolving path 'HTTPValidationError.json'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-oas.1 | Resolving path 'HTTPValidationError.json' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\schemas\\HTTPValidationError.json"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-oas.1 | Resolving path 'pontoDTO.json'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-oas.1 | Resolving path 'pontoDTO.json' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\schemas\\pontoDTO.json"
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-oas",1]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name 'TipoAlgoritmo' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name 'TipoAlgoritmo' and type 'type' |  "TipoAlgoritmo"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-oas.1 | Resolving path 'tipoAlgoritmo.json'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-oas.1 | Resolving path 'tipoAlgoritmo.json' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\schemas\\tipoAlgoritmo.json"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-oas.1 | Resolving path 'validationError.json'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-oas.1 | Resolving path 'validationError.json' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\schemas\\validationError.json"
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-oas.1 | buildStart |  undefined
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'TipoAlgoritmo' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'TipoAlgoritmo' and type 'function' |  "TipoAlgoritmo"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'TipoAlgoritmo' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'TipoAlgoritmo' and type 'file' |  "TipoAlgoritmo"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'TipoAlgoritmo.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'TipoAlgoritmo.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\TipoAlgoritmo.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PontoDTO' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PontoDTO' and type 'function' |  "PontoDTO"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PontoDTO' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PontoDTO' and type 'file' |  "PontoDTO"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'PontoDTO.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'PontoDTO.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\PontoDTO.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDto' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDto' and type 'function' |  "AlgoritmosDto"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDto' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDto' and type 'type' |  "AlgoritmosDto"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDto' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDto' and type 'file' |  "AlgoritmosDto"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDto.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDto.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\AlgoritmosDto.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosResponseDto' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosResponseDto' and type 'function' |  "AlgoritmosResponseDto"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosResponseDto' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosResponseDto' and type 'type' |  "AlgoritmosResponseDto"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosResponseDto' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosResponseDto' and type 'file' |  "AlgoritmosResponseDto"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'AlgoritmosResponseDto.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'AlgoritmosResponseDto.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\AlgoritmosResponseDto.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'ValidationError' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'ValidationError' and type 'function' |  "ValidationError"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'ValidationError' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'ValidationError' and type 'file' |  "ValidationError"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'ValidationError.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'ValidationError.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\ValidationError.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'HTTPValidationError' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'HTTPValidationError' and type 'function' |  "HTTPValidationError"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'HTTPValidationError' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'HTTPValidationError' and type 'type' |  "HTTPValidationError"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'HTTPValidationError' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'HTTPValidationError' and type 'file' |  "HTTPValidationError"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'HTTPValidationError.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'HTTPValidationError.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\HTTPValidationError.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PontoDTO' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PontoDTO' and type 'function' |  "PontoDTO"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PontoDTO' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PontoDTO' and type 'type' |  "PontoDTO"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PontoDTO' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PontoDTO' and type 'file' |  "PontoDTO"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'PontoDTO.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'PontoDTO.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\PontoDTO.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'TipoAlgoritmoEnum' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'TipoAlgoritmoEnum' and type 'type' |  "TipoAlgoritmoEnum"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'TipoAlgoritmo' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'TipoAlgoritmo' and type 'function' |  "TipoAlgoritmo"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'TipoAlgoritmo' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'TipoAlgoritmo' and type 'type' |  "TipoAlgoritmo"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'TipoAlgoritmo' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'TipoAlgoritmo' and type 'file' |  "TipoAlgoritmo"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'TipoAlgoritmo.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'TipoAlgoritmo.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\TipoAlgoritmo.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'ValidationError' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'ValidationError' and type 'function' |  "ValidationError"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'ValidationError' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'ValidationError' and type 'type' |  "ValidationError"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'ValidationError' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'ValidationError' and type 'file' |  "ValidationError"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'ValidationError.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'ValidationError.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\ValidationError.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'file' |  "AlgoritmosDisponiveisAlgoritmosGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDisponiveisAlgoritmosGet.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDisponiveisAlgoritmosGet.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\AlgoritmosDisponiveisAlgoritmosGet.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'undefined'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'undefined' |  "AlgoritmosDisponiveisAlgoritmosGet200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGetQueryResponse' and type 'undefined'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGetQueryResponse' and type 'undefined' |  "AlgoritmosDisponiveisAlgoritmosGetQueryResponse"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'function' |  "AlgoritmosDisponiveisAlgoritmosGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'type' |  "AlgoritmosDisponiveisAlgoritmosGet200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'type' |  "AlgoritmosDisponiveisAlgoritmosGet200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet' and type 'file' |  "AlgoritmosDisponiveisAlgoritmosGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDisponiveisAlgoritmosGet.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDisponiveisAlgoritmosGet.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\AlgoritmosDisponiveisAlgoritmosGet.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'function' |  "AlgoritmosDisponiveisAlgoritmosGet200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'file' |  "AlgoritmosDisponiveisAlgoritmosGet200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDisponiveisAlgoritmosGet200.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDisponiveisAlgoritmosGet200.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\AlgoritmosDisponiveisAlgoritmosGet200.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGetQueryResponse' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGetQueryResponse' and type 'type' |  "AlgoritmosDisponiveisAlgoritmosGetQueryResponse"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGetQueryResponse' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGetQueryResponse' and type 'type' |  "AlgoritmosDisponiveisAlgoritmosGetQueryResponse"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet' and type 'file' |  "AlgoritmosDisponiveisAlgoritmosGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDisponiveisAlgoritmosGet.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDisponiveisAlgoritmosGet.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\AlgoritmosDisponiveisAlgoritmosGet.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'function' |  "AlgoritmosDisponiveisAlgoritmosGet200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name ' calcular_rota_algoritmos__post ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name ' calcular_rota_algoritmos__post ' and type 'file' |  "CalcularRotaAlgoritmosPost"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\CalcularRotaAlgoritmosPost.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'undefined'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'undefined' |  "CalcularRotaAlgoritmosPost200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost422' and type 'undefined'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost422' and type 'undefined' |  "CalcularRotaAlgoritmosPost422"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationRequest' and type 'undefined'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationRequest' and type 'undefined' |  "CalcularRotaAlgoritmosPostMutationRequest"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationResponse' and type 'undefined'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationResponse' and type 'undefined' |  "CalcularRotaAlgoritmosPostMutationResponse"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name ' calcular_rota_algoritmos__post ' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name ' calcular_rota_algoritmos__post ' and type 'function' |  "CalcularRotaAlgoritmosPost"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosResponseDto' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosResponseDto' and type 'function' |  "AlgoritmosResponseDto"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosResponseDto' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosResponseDto' and type 'file' |  "AlgoritmosResponseDto"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'AlgoritmosResponseDto.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'AlgoritmosResponseDto.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\AlgoritmosResponseDto.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'type' |  "CalcularRotaAlgoritmosPost200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'type' |  "CalcularRotaAlgoritmosPost200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost' and type 'file' |  "CalcularRotaAlgoritmosPost"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\CalcularRotaAlgoritmosPost.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'HTTPValidationError' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'HTTPValidationError' and type 'function' |  "HTTPValidationError"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'HTTPValidationError' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'HTTPValidationError' and type 'file' |  "HTTPValidationError"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'HTTPValidationError.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'HTTPValidationError.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\HTTPValidationError.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost422' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost422' and type 'type' |  "CalcularRotaAlgoritmosPost422"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost422' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost422' and type 'type' |  "CalcularRotaAlgoritmosPost422"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost' and type 'file' |  "CalcularRotaAlgoritmosPost"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\CalcularRotaAlgoritmosPost.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDto' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDto' and type 'function' |  "AlgoritmosDto"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDto' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDto' and type 'file' |  "AlgoritmosDto"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDto.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDto.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\AlgoritmosDto.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationRequest' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationRequest' and type 'type' |  "CalcularRotaAlgoritmosPostMutationRequest"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationRequest' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationRequest' and type 'type' |  "CalcularRotaAlgoritmosPostMutationRequest"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost' and type 'file' |  "CalcularRotaAlgoritmosPost"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\CalcularRotaAlgoritmosPost.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'function' |  "CalcularRotaAlgoritmosPost200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'file' |  "CalcularRotaAlgoritmosPost200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost200.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost200.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\CalcularRotaAlgoritmosPost200.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationResponse' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationResponse' and type 'type' |  "CalcularRotaAlgoritmosPostMutationResponse"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationResponse' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationResponse' and type 'type' |  "CalcularRotaAlgoritmosPostMutationResponse"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost' and type 'file' |  "CalcularRotaAlgoritmosPost"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\CalcularRotaAlgoritmosPost.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'function' |  "CalcularRotaAlgoritmosPost200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationRequest' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationRequest' and type 'function' |  "CalcularRotaAlgoritmosPostMutationRequest"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost422' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost422' and type 'function' |  "CalcularRotaAlgoritmosPost422"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name ' ping__get ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name ' ping__get ' and type 'file' |  "PingGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'PingGet.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'PingGet.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\PingGet.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'undefined'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'undefined' |  "PingGet200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PingGetQueryResponse' and type 'undefined'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PingGetQueryResponse' and type 'undefined' |  "PingGetQueryResponse"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name ' ping__get ' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name ' ping__get ' and type 'function' |  "PingGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'type' |  "PingGet200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'type' |  "PingGet200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PingGet' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PingGet' and type 'file' |  "PingGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'PingGet.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'PingGet.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\PingGet.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'function' |  "PingGet200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'file' |  "PingGet200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'PingGet200.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'PingGet200.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\PingGet200.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PingGetQueryResponse' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PingGetQueryResponse' and type 'type' |  "PingGetQueryResponse"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PingGetQueryResponse' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PingGetQueryResponse' and type 'type' |  "PingGetQueryResponse"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PingGet' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PingGet' and type 'file' |  "PingGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'PingGet.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'PingGet.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\PingGet.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'function' |  "PingGet200"
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | buildStart |  undefined
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'function' |  "algoritmosDisponiveisAlgoritmosGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'file' |  "algoritmosDisponiveisAlgoritmosGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving path 'algoritmosDisponiveisAlgoritmosGet.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving path 'algoritmosDisponiveisAlgoritmosGet.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\client\\algoritmosDisponiveisAlgoritmosGet.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving name 'get algoritmos_disponiveis_algoritmos__get url' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving name 'get algoritmos_disponiveis_algoritmos__get url' and type 'function' |  "getAlgoritmosDisponiveisAlgoritmosGetUrl"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'file' |  "algoritmosDisponiveisAlgoritmosGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving path 'algoritmosDisponiveisAlgoritmosGet.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving path 'algoritmosDisponiveisAlgoritmosGet.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\client\\algoritmosDisponiveisAlgoritmosGet.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'file' |  "AlgoritmosDisponiveisAlgoritmosGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDisponiveisAlgoritmosGet.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'AlgoritmosDisponiveisAlgoritmosGet.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\AlgoritmosDisponiveisAlgoritmosGet.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'type' |  "AlgoritmosDisponiveisAlgoritmosGet200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGetQueryResponse' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGetQueryResponse' and type 'type' |  "AlgoritmosDisponiveisAlgoritmosGetQueryResponse"
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name ' algoritmos_disponiveis_algoritmos__get ' and type 'file' |  "algoritmos_disponiveis_algoritmos__get"
+[23/07/2025, 13:22:34]: No hook 'resolvePath' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving path 'algoritmos_disponiveis_algoritmos__get.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving path 'algoritmos_disponiveis_algoritmos__get.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\algoritmos_disponiveis_algoritmos__get.ts"
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGet200' and type 'function' |  "AlgoritmosDisponiveisAlgoritmosGet200"
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGetQueryResponse' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name 'AlgoritmosDisponiveisAlgoritmosGetQueryResponse' and type 'function' |  "AlgoritmosDisponiveisAlgoritmosGetQueryResponse"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving name ' calcular_rota_algoritmos__post ' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving name ' calcular_rota_algoritmos__post ' and type 'function' |  "calcularRotaAlgoritmosPost"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving name ' calcular_rota_algoritmos__post ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving name ' calcular_rota_algoritmos__post ' and type 'file' |  "calcularRotaAlgoritmosPost"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving path 'calcularRotaAlgoritmosPost.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving path 'calcularRotaAlgoritmosPost.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\client\\calcularRotaAlgoritmosPost.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving name 'get calcular_rota_algoritmos__post url' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving name 'get calcular_rota_algoritmos__post url' and type 'function' |  "getCalcularRotaAlgoritmosPostUrl"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving name ' calcular_rota_algoritmos__post ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving name ' calcular_rota_algoritmos__post ' and type 'file' |  "calcularRotaAlgoritmosPost"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving path 'calcularRotaAlgoritmosPost.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving path 'calcularRotaAlgoritmosPost.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\client\\calcularRotaAlgoritmosPost.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name ' calcular_rota_algoritmos__post ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name ' calcular_rota_algoritmos__post ' and type 'file' |  "CalcularRotaAlgoritmosPost"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'CalcularRotaAlgoritmosPost.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\CalcularRotaAlgoritmosPost.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'type' |  "CalcularRotaAlgoritmosPost200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost422' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPost422' and type 'type' |  "CalcularRotaAlgoritmosPost422"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationRequest' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationRequest' and type 'type' |  "CalcularRotaAlgoritmosPostMutationRequest"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationResponse' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'CalcularRotaAlgoritmosPostMutationResponse' and type 'type' |  "CalcularRotaAlgoritmosPostMutationResponse"
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name ' calcular_rota_algoritmos__post ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name ' calcular_rota_algoritmos__post ' and type 'file' |  "calcular_rota_algoritmos__post"
+[23/07/2025, 13:22:34]: No hook 'resolvePath' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving path 'calcular_rota_algoritmos__post.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving path 'calcular_rota_algoritmos__post.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\calcular_rota_algoritmos__post.ts"
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name 'CalcularRotaAlgoritmosPost200' and type 'function' |  "CalcularRotaAlgoritmosPost200"
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name 'CalcularRotaAlgoritmosPost422' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name 'CalcularRotaAlgoritmosPost422' and type 'function' |  "CalcularRotaAlgoritmosPost422"
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name 'CalcularRotaAlgoritmosPostMutationRequest' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name 'CalcularRotaAlgoritmosPostMutationRequest' and type 'function' |  "CalcularRotaAlgoritmosPostMutationRequest"
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name 'CalcularRotaAlgoritmosPostMutationResponse' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name 'CalcularRotaAlgoritmosPostMutationResponse' and type 'function' |  "CalcularRotaAlgoritmosPostMutationResponse"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving name ' ping__get ' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving name ' ping__get ' and type 'function' |  "pingGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving name ' ping__get ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving name ' ping__get ' and type 'file' |  "pingGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving path 'pingGet.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving path 'pingGet.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\client\\pingGet.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving name 'get ping__get url' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving name 'get ping__get url' and type 'function' |  "getPingGetUrl"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving name ' ping__get ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving name ' ping__get ' and type 'file' |  "pingGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-client.1 | Resolving path 'pingGet.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | Resolving path 'pingGet.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\client\\pingGet.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name ' ping__get ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name ' ping__get ' and type 'file' |  "PingGet"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving path 'PingGet.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving path 'PingGet.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\models\\PingGet.ts"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PingGet200' and type 'type' |  "PingGet200"
+[23/07/2025, 13:22:34]: Executing pluginKey plugin-ts.1 | Resolving name 'PingGetQueryResponse' and type 'type'
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-ts.1 | Resolving name 'PingGetQueryResponse' and type 'type' |  "PingGetQueryResponse"
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name ' ping__get ' and type 'file'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name ' ping__get ' and type 'file' |  "ping__get"
+[23/07/2025, 13:22:34]: No hook 'resolvePath' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving path 'ping__get.ts'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving path 'ping__get.ts' |  "C:\\Users\\Marcos\\Documents\\faculdade_9_semestre\\tcc\\Tcc\\application\\Routez\\src\\api\\ping__get.ts"
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name 'PingGet200' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name 'PingGet200' and type 'function' |  "PingGet200"
+[23/07/2025, 13:22:34]: No hook 'resolveName' for pluginKey '["plugin-zod"]' found, falling back on the '@kubb/core' plugin
+[23/07/2025, 13:22:34]: Executing pluginKey core.2 | Resolving name 'PingGetQueryResponse' and type 'function'
+[23/07/2025, 13:22:34]: Executed pluginKey core.2 | Resolving name 'PingGetQueryResponse' and type 'function' |  "PingGetQueryResponse"
+[23/07/2025, 13:22:34]: Executed pluginKey plugin-client.1 | buildStart |  undefined

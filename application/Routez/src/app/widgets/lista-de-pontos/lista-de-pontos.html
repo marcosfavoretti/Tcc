@@ -1,0 +1,14 @@
+<div class="d-flex flex-column container">
+    <hr>
+    <app-input-list
+    [tipo]="'INICIAL'"
+    label="Ponto inicial"
+    [itens]="!picklist.ponto_inicial? []:  [picklist.ponto_inicial]">
+  </app-input-list>
+    <hr>
+    <app-input-list 
+    [tipo]="'POI'"
+    label="Pontos de interesses" 
+    [itens]="picklist.pois"></app-input-list>
+    <hr>
+</div>

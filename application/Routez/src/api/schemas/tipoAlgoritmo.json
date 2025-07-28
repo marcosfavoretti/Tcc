@@ -1,0 +1,1 @@
+{"type":"string","enum":["FORCA_BRUTA","QAOA","GENETICO"],"title":"TipoAlgoritmo","x-readme-ref-name":"TipoAlgoritmo"}

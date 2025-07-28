@@ -1,0 +1,37 @@
+<div class="d-flex flex-column p-3">
+    <button class="btn btn-close align-self-end" (click)="closeButtonFn()"></button>
+    <p-tabs value="0">
+        <p-tablist>
+            <p-tab value="0">Criar ponto</p-tab>
+            <p-tab value="1">Histórico</p-tab>
+        </p-tablist>
+        <p-tabpanels>
+            <p-tabpanel value="0">
+
+                <h1 class="display-5 text-center text-secondary">adicionar ponto {{tipo === 'INICIAL' ?
+                    tipo.toLocaleLowerCase():''}}</h1>
+                <div class="container py-2 d-flex flex-column gap-3">
+                    <app-map (onSelectPoint)="ponto = $event"
+                        [preSelectPoint]="pickListService.pois.concat(pickListService.ponto_inicial? pickListService.ponto_inicial: [])"></app-map>
+                    <form #form="ngForm" class="form-control" (ngSubmit)="submitPontos(form)">
+                        <label for="nome">nome do ponto:</label>
+                        <input [value]="ponto?.name ?? `new `" id="nome" type="text" ngModel required name="nome"
+                            class="input-group input-group-text" [disabled]="!ponto">
+
+                        <label for="latitude">latitude:</label>
+                        <input type="text" id="latitude" [ngModel]="ponto?.latitude" required name="latitude"
+                            class="input-group input-group-text" [disabled]="true">
+
+                        <label for="longitude">longitude:</label>
+                        <input type="text" id="longitude" [ngModel]="ponto?.longitude" required name="longitude"
+                            class="input-group input-group-text" [disabled]="true">
+                        <hr>
+                        <input type="submit" class="btn btn-group btn-secondary" name="" id="" value="submit">
+                    </form>
+                </div>
+            </p-tabpanel>
+            <p-tabpanel value="1">
+                <span>historico</span>
+            </p-tabpanel>
+        </p-tabpanels>
+    </p-tabs>
