@@ -1,0 +1,13 @@
+<ul class="list-group">
+    @for (item of loadHistorico(); track $index) {
+        <li class="list-group-item">
+            <button (click)="onPontoSelecionado.emit(item)" class="btn btn-group w-100">
+                <app-item-list 
+                class="w-100"
+                [cor]="'black'"
+                [ponto]="item"
+                ></app-item-list>
+            </button>
+        </li>
+    }
+</ul>

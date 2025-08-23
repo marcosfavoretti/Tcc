@@ -5,6 +5,7 @@ import { ItemList } from "../item-list/item-list";
 import { LoadingPopupService } from '../../services/LoadingPopup.service';
 import { MapPopup } from '../map-popup/map-popup';
 import { ColorCSS } from '../../@core/enum/Colorcss.enum';
+import { PontoDtoCor } from '../../@core/types/PontoDtoCor';
 
 @Component({
   selector: 'app-input-list',
@@ -14,18 +15,18 @@ import { ColorCSS } from '../../@core/enum/Colorcss.enum';
 })
 export class InputList implements OnInit{
   @Input() label!: string
-  @Input() itens: PontoDTO[] = []
+  @Input() itens: PontoDtoCor[] = []
   @Input() tipo!: "POI" | "INICIAL";
 
-  getCor(index: number):string{
-    const colors = Object.values(ColorCSS);
-    if(this.tipo === 'INICIAL') return colors[colors.length-1]
-    if (index < colors.length) {
-      return colors[index];
-    }
-    const randomIndex = Math.floor(Math.random() * colors.length);
-    return colors[randomIndex];
-  }
+  // getCor(index: number):string{
+  //   const colors = Object.values(ColorCSS);
+  //   if(this.tipo === 'INICIAL') return colors[colors.length-1]
+  //   if (index < colors.length) {
+  //     return colors[index];
+  //   }
+  //   const randomIndex = Math.floor(Math.random() * colors.length);
+  //   return colors[randomIndex];
+  // }
 
   constructor(
     private popup: LoadingPopupService

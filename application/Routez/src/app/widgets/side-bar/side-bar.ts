@@ -26,9 +26,7 @@ export class SideBar {
     private gerenciaAlgoritmoRes: GerenciaAlgoritmoResService
   ) { }
 
-
   requestAlgoritmo(): void {
-    console.log(this.algoritmoStorage.getAlgoritmosSelecionados());
     if (!this.pickList.ponto_inicial) {
       alert('Adicione um ponto inicial')
       return;
@@ -37,23 +35,21 @@ export class SideBar {
       alert('Adicione mais pontos de interesse')
       return;
     }
-
     const requests: Observable<AlgoritmosResponseDto>[] = [];
-
     for (const algoritmo of this.algoritmoStorage.getAlgoritmosSelecionados()) {
       const resposta$ = this.api.executaAlgoritmo({
         algoritmo: algoritmo as TipoAlgoritmoEnum,
         ponto_inicial: this.pickList.ponto_inicial,
         pontos_interesse: this.pickList.pois,
       })
-        .pipe(
-          tap(
-            data => this.gerenciaAlgoritmoRes.addResposta(data)
-          )
-        );
       requests.push(resposta$);
     }
-    const allResponses$ = forkJoin(requests);
+    const allResponses$ = forkJoin(requests)
+      .pipe(
+        tap(
+          data => this.gerenciaAlgoritmoRes.setRespostas(data)
+        )
+      );
     this.popup.showWhile(allResponses$);
     allResponses$.subscribe({
       next: (responses) => {
@@ -64,4 +60,5 @@ export class SideBar {
       }
     });
   }
+
 }

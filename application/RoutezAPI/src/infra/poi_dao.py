@@ -97,9 +97,9 @@ class PoiDAO:
     
     def shortPathByPOI(
     self,
-    poiId1: str, 
+    poiId1: str,
     poiId2: str
-    ) -> Optional[Dict[str, Union[float, List[str]]]]:
+) -> Optional[Dict[str, Union[float, List]]]:
 
         if not poiId1 or not isinstance(poiId1, str):
             print(f"Invalid poiId1: {poiId1}")
@@ -107,39 +107,55 @@ class PoiDAO:
         if not poiId2 or not isinstance(poiId2, str):
             print(f"Invalid poiId2: {poiId2}")
             return None
-    
+
         query = '''
         MATCH (poi1:POI {osmid: $poiId1})-[:CONNECTED_TO]->(start:Node),
             (poi2:POI {osmid: $poiId2})-[:CONNECTED_TO]->(end:Node)
         CALL apoc.algo.dijkstra(start, end, 'ROAD_TO>', 'length') 
         YIELD path, weight
+
+        UNWIND relationships(path) AS rel
+        WITH weight, rel,
+            startNode(rel) AS fromNode,
+            endNode(rel) AS toNode
         RETURN 
             weight AS totalLength,
-            [rel IN relationships(path) | rel.osmid] AS streetsIds
+            COLLECT([
+                fromNode.latitude, fromNode.longitude,
+                toNode.latitude, toNode.longitude
+            ]) AS pathCoordinates,
+            COLLECT(rel.osmid) AS streetsIds
         '''
-    
+
         try:
             result = self.driver.run(query, poiId1=poiId1, poiId2=poiId2).data()
-            
+
             if not result:
                 print(f"No path found between POIs {poiId1} and {poiId2}")
                 return None
 
             data = result[0]
-            
-            if 'totalLength' not in data or 'streetsIds' not in data:
+
+            if 'totalLength' not in data or 'pathCoordinates' not in data:
                 print(f"Unexpected result structure: {data}")
                 return None
-            
+
+            # Formatar como lista de pares de coordenadas para o frontend (Leaflet)
+            route_lines = [
+                [[lat1, lon1], [lat2, lon2]]
+                for lat1, lon1, lat2, lon2 in data["pathCoordinates"]
+            ]
+
             return {
-                "totalLength": round(data['totalLength'], 2),  
+                "totalLength": round(data['totalLength'], 2),
                 "streetsIds": data['streetsIds'],
+                "routeLines": route_lines
             }
 
         except Exception as e:
             print(f"An error occurred while querying the database: {str(e)}")
             return None
-        
+
     def insert_poi(self, lat: float, lon: float, name:str, label='POI') -> Node:
         node = self.findPoiByLatAndLog(lat, lon)
         if(node):

@@ -4,10 +4,11 @@ import { PontoDTO } from '../../../api';
 import { FormsModule, NgForm } from '@angular/forms';
 import { PickListService } from '../../services/PickList.service';
 import { TabsModule } from 'primeng/tabs';
+import { HisticoDePontos } from "../histico-de-pontos/histico-de-pontos";
 
 @Component({
   selector: 'app-map-popup',
-  imports: [Map, FormsModule, TabsModule],
+  imports: [Map, FormsModule, TabsModule, HisticoDePontos],
   providers: [],
   standalone: true,
   templateUrl: './map-popup.html',
@@ -19,14 +20,7 @@ export class MapPopup {
   ) { }
 
   submitPontos(form: NgForm): void {
-    if (!form.valid) throw new Error('formulario invalido')
-    console.log(
-      {
-        latitude: form.controls['latitude'].value,
-        longitude: form.controls['longitude'].value,
-        name: form.controls['nome'].value
-      },
-    )
+    if (!form.valid) throw new Error('formulario invalido');
     const dto = ({
       latitude: form.controls['latitude'].value,
       longitude: form.controls['longitude'].value,
@@ -35,6 +29,13 @@ export class MapPopup {
     this.tipo === 'POI' ?
       this.pickListService.addPOIs(dto)
       : this.pickListService.addPontoInicial(dto)
+    this.closeButtonFn();
+  }
+
+  submitPontoAntigo(ponto: PontoDTO): void {
+    this.tipo === 'POI' ?
+      this.pickListService.addPOIs(ponto)
+      : this.pickListService.addPontoInicial(ponto);
     this.closeButtonFn();
   }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { GerenciaAlgoritmoResService } from '../../services/GerenciaAlgoritmoRes.service';
 
 @Component({
@@ -9,12 +9,9 @@ import { GerenciaAlgoritmoResService } from '../../services/GerenciaAlgoritmoRes
 })
 //isso tera que ser mudado pois se nao ira mostrar a metrica de tudo
 export class Metricas {
-  constructor(
-    public gerenciaAlgoritmoResService: GerenciaAlgoritmoResService
-  ){}
+  @Input() metricas: any[] = [];
 
-  getMetricasEntries(): [string, any][] {
-    return this.gerenciaAlgoritmoResService.respostas
-      .flatMap(r => Object.entries(r.metricas));
+  getMetricasEntries():any[]{
+    return Object.entries(this.metricas);
   }
 }

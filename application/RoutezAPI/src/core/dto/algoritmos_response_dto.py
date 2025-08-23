@@ -8,6 +8,10 @@ class AlgoritmosResponseDto(BaseModel):
         description='Alias do algoritmo que sera utilizado',
         examples=['FORCA_BRUTA']
     )
+    caminho: List[tuple[int, int]] = Field(
+        ...,
+        description='Ruas para traçar',
+    )
     metricas: Dict[str, str] = Field(
         description='Objeto com as metricas dos algoritmos'
     )

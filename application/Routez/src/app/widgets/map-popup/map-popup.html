@@ -31,7 +31,8 @@
                 </div>
             </p-tabpanel>
             <p-tabpanel value="1">
-                <span>historico</span>
+                <p>selecione alguns pontos já utilizado:</p>
+                <app-histico-de-pontos (onPontoSelecionado)="submitPontoAntigo($event)" [tipo]="tipo"></app-histico-de-pontos>
             </p-tabpanel>
         </p-tabpanels>
     </p-tabs>

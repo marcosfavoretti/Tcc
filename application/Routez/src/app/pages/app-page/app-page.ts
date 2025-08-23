@@ -7,9 +7,10 @@ import { Map } from "../../widgets/map/map"
 import { PickListService } from '../../services/PickList.service';
 import { Metricas } from "../../widgets/metricas/metricas";
 import { StartUpService } from '../../services/StartUp.service';
+import { MapSlider } from "../../widgets/map-slider/map-slider";
 @Component({
   selector: 'app-app-page',
-  imports: [Map, SplitterModule, SideBar, AppPagePlaceHolder, Metricas],
+  imports: [Map, SplitterModule, SideBar, AppPagePlaceHolder, Metricas, MapSlider],
   templateUrl: './app-page.html',
   styleUrl: './app-page.css'
 })
@@ -22,9 +23,5 @@ export class AppPage implements OnInit{
 
   ngOnInit(): void {
     this.startUpService.startUp();
-  }
-
-  getRepostas(): string[] {
-    return this.gerenciaAlgoritmoResService.respostas.map(p => p.ruas).flat();
   }
 }

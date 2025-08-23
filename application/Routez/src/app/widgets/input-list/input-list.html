@@ -5,7 +5,7 @@
     <ul class="list-group">
         @for (item of itens; track $index) {
             <li class="list-group-item">
-                <app-item-list [cor]="getCor($index)"  [ponto]="item"></app-item-list>
+                <app-item-list [cor]="item.cor"  [ponto]="item"></app-item-list>
             </li>
         }
     </ul>

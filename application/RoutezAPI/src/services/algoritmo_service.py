@@ -46,13 +46,15 @@ class AlgoritmoService:
         
         best_path, min_distance, resultadoDasMetricas = algoritmo.executar(dist_matrix_np, pois_salvos)
         
-        print(best_path)
-        
+        print("BEST PATH:", best_path)
+        print("POIS SALVOS:", pois_salvos)
+                
         point_index = {p['osmid']: i for i, p in enumerate(pois_salvos)}
 
         street_ids = []
 
         for i in range(len(best_path) - 1):
+            print('->',i)
             idx1 = point_index[best_path[i]['osmid']]
             idx2 = point_index[best_path[i + 1]['osmid']]
             street_ids.append(streets_matrix_info[idx1][idx2])
@@ -65,7 +67,8 @@ class AlgoritmoService:
             algoritmo=dto.algoritmo,
             menorCaminho=min_distance,
             metricas=resultadoDasMetricas,
-            ruas=resultList
+            ruas=resultList,
+            caminho=[]
         )
 
 def get_algoritmo_service(

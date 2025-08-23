@@ -10,6 +10,8 @@ export class GerenciaAlgoritmoResService{
     addResposta(resposta: AlgoritmosResponseDto):void{
         this.respostas.push(resposta);
     }
-
     
+    setRespostas(respostas: AlgoritmosResponseDto[]):void{
+        this.respostas = respostas;
+    }
 }

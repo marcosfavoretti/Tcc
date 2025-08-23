@@ -42,10 +42,11 @@ class DistanceMatixService:
                     if segment:
                         length_value = segment.get('totalLength', 0)
                         streets_ids = segment.get('streetsIds', [])
+                        lines = segment.get('routeLines', [])
                         dist_matrix[i][j] = float(length_value)
-                        streets_matrix[i][j] = streets_ids
-                    else:
+                        streets_matrix[i][j] = lines
                         
+                    else:
                         dist_matrix[i][j] = float('inf') 
                         streets_matrix[i][j] = []
                         print(f"Aviso: Nenhum caminho encontrado entre POI {p1_osmid} e {p2_osmid}. Distância setada para infinito.")

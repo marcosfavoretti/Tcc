@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { PontoDTO } from "../../api";
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +19,14 @@ export class LocalStorageService {
       }
     }
   
+    consultarPOIs():PontoDTO[]{
+      return Object.entries(localStorage).filter(item=> item[0].startsWith('POI-')).map(item=> JSON.parse(item[1]))
+    }
+
+    consultarPontosInicial():PontoDTO[]{
+      return Object.entries(localStorage).filter(item=> item[0].startsWith('I-')).map(item=> JSON.parse(item[1]))
+    }
+
     /**
      * Recupera um item do localStorage e faz o parse para o tipo desejado.
      * @param key A chave do item.

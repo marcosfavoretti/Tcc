@@ -1,0 +1,23 @@
+<p-carousel
+  [value]="gerenciaAlgoritmoResService.respostas"
+  [numVisible]="1"
+  [numScroll]="1"
+  orientation="horizontal"
+  contentClass="flex items-center"
+>
+  <ng-template pTemplate="item" let-product>
+    <div class="border border-surface-200 dark:border-surface-700 rounded m-2 p-4">
+      <h1 class="mb-4 font- display-6">{{ product.algoritmo }}</h1>
+      <app-metricas
+        [metricas]="product.metricas"
+      />
+      <app-map
+      [preSelectPoint]="pickListService.pois.concat(!pickListService.ponto_inicial? [] : pickListService.ponto_inicial)"
+      [selectable]="false"
+      [ruas]="product.ruas"
+      ></app-map>
+    </div>
+  </ng-template>
+</p-carousel>
+
+
