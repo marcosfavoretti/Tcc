@@ -5,7 +5,7 @@
     </ng-template>
     <ng-template #panel>
       <!-- <app-map></app-map> -->
-      @if(!gerenciaAlgoritmoResService.respostas.length) {
+      @if(!gerenciaAlgoritmoResService.respostas$().length) {
         <app-app-page-place-holder></app-app-page-place-holder>
         <!-- <app-metricas></app-metricas>
         <app-map 

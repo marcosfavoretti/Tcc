@@ -5,6 +5,9 @@ from typing import List, Tuple
 from core.abstract.algoritmo_base import AlgoritmoBase
 from .tempo_execucao import TempoExecucao
 from services.distancia import Distancia
+from services.sequencia_execucao import SequenciaExecucao 
+
+
 class ForcaBrutaService(AlgoritmoBase):
     
     def __init__(self):
@@ -53,5 +56,6 @@ class ForcaBrutaService(AlgoritmoBase):
 def get_forca_bruta_service() -> ForcaBrutaService:
     service =  ForcaBrutaService()
     service.adicionar_metrica(TempoExecucao())
+    service.adicionar_metrica(SequenciaExecucao())
     service.adicionar_metrica(Distancia())
     return service

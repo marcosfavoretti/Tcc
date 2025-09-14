@@ -12,10 +12,11 @@ from qiskit.circuit.library import QAOAAnsatz
 from qiskit.quantum_info import SparsePauliOp
 from qiskit_ibm_runtime import SamplerV2, EstimatorV2, QiskitRuntimeService,Sampler,Estimator
 from scipy.optimize import minimize
+from services.sequencia_execucao import SequenciaExecucao
 
 class AlgoritmoQAOA(AlgoritmoBase):
     
-    BACKEND = AerSimulator()
+    BACKEND = AerSimulator()#aqui setei como simulador em vez do computador quantico da ibm
     REPS = 1
     
     def _executar_logica_algoritmo(self, dist_matrix: np.ndarray, pontos: List[PontoDTO]) -> Tuple[List[PontoDTO], float]:
@@ -95,7 +96,12 @@ class AlgoritmoQAOA(AlgoritmoBase):
         print(f"Ordem encontrada pelo QAOA: {order}")
         print(f"Distância do caminho QAOA: {qaoa_distance}")
         
-        return order, qaoa_distance
+        best_path_dto: List[PontoDTO] = []
+        if order is not None:  # Verifica se um caminho válido foi encontrado
+            for idx in order + [0]:  # adiciona a cidade inicial no fim
+                best_path_dto.append(pontos[idx])
+
+        return best_path_dto, qaoa_distance
         
     def cost_function(self,params, ansatz, hamiltonian, estimator):
         bound_circuit = ansatz.assign_parameters(params)
@@ -302,6 +308,7 @@ class AlgoritmoQAOA(AlgoritmoBase):
 def get_algoritmo_QAOA() -> AlgoritmoQAOA:
     service =  AlgoritmoQAOA()
     service.adicionar_metrica(TempoExecucao())
+    service.adicionar_metrica(SequenciaExecucao())
     service.adicionar_metrica(Distancia())
     return service
         

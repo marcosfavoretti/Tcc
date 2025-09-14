@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, input, Input, OnInit, Signal } from '@angular/core';
 import { PickListService } from '../../services/PickList.service';
 import { PontoDTO } from '../../../api';
 import { ItemList } from "../item-list/item-list";
@@ -13,28 +13,25 @@ import { PontoDtoCor } from '../../@core/types/PontoDtoCor';
   templateUrl: './input-list.html',
   styleUrl: './input-list.css'
 })
-export class InputList implements OnInit{
+export class InputList implements OnInit {
   @Input() label!: string
-  @Input() itens: PontoDtoCor[] = []
   @Input() tipo!: "POI" | "INICIAL";
+  @Input() itens!: Signal<PontoDtoCor[]>;
 
-  // getCor(index: number):string{
-  //   const colors = Object.values(ColorCSS);
-  //   if(this.tipo === 'INICIAL') return colors[colors.length-1]
-  //   if (index < colors.length) {
-  //     return colors[index];
-  //   }
-  //   const randomIndex = Math.floor(Math.random() * colors.length);
-  //   return colors[randomIndex];
-  // }
+  pickListService = inject(PickListService);
 
   constructor(
     private popup: LoadingPopupService
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  showForms():void{
-    this.popup.showPopUpComponent(MapPopup, {tipo: this.tipo})
+  removePoint(item: PontoDtoCor) {
+    if (this.tipo === 'INICIAL') return this.pickListService.removePontoInicial();
+    this.pickListService.removePOIs(item);
+  }
+
+  showForms(): void {
+    this.popup.showPopUpComponent(MapPopup, { tipo: this.tipo })
   }
 }

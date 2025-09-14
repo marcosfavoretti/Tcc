@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { GerenciaAlgoritmoResService } from '../../services/GerenciaAlgoritmoRes.service';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-metricas',
@@ -9,9 +8,9 @@ import { GerenciaAlgoritmoResService } from '../../services/GerenciaAlgoritmoRes
 })
 //isso tera que ser mudado pois se nao ira mostrar a metrica de tudo
 export class Metricas {
-  @Input() metricas: any[] = [];
+  metricas = input.required<{[k: string]: string}>();
 
   getMetricasEntries():any[]{
-    return Object.entries(this.metricas);
+    return Object.entries(this.metricas());
   }
 }

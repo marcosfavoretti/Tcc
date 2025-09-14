@@ -1,0 +1,11 @@
+jogar tudo em um container so para deploy
+
+componente para metricas para visualização
+
+geracao de metricas melhores como graficos
+
+pipe para ajustar metricas
+
+desacoplar acesso ao banco de dados no algoritmo pq se nao vai aumentar o tempo msm
+
+id para apagar um unico mapa apenas da store

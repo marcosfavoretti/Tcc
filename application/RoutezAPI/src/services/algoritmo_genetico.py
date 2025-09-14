@@ -6,6 +6,8 @@ import numpy as np
 from typing import List, Tuple
 from core.dto.algoritmos_dto import PontoDTO
 import random
+from services.sequencia_execucao import SequenciaExecucao
+
 
 class AlgoritmoGenetico(AlgoritmoBase):
     POPULATION_SIZE = 100
@@ -149,6 +151,7 @@ class AlgoritmoGenetico(AlgoritmoBase):
 def get_algoritmo_genetico() -> AlgoritmoGenetico:
     service =  AlgoritmoGenetico()
     service.adicionar_metrica(TempoExecucao())
+    service.adicionar_metrica(SequenciaExecucao())
     service.adicionar_metrica(Distancia())
     return service
         

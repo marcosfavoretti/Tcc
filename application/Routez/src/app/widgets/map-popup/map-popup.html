@@ -12,7 +12,7 @@
                     tipo.toLocaleLowerCase():''}}</h1>
                 <div class="container py-2 d-flex flex-column gap-3">
                     <app-map (onSelectPoint)="ponto = $event"
-                        [preSelectPoint]="pickListService.pois.concat(pickListService.ponto_inicial? pickListService.ponto_inicial: [])"></app-map>
+                        [preSelectPoint]="pickListService.pois().concat(pickListService.pontoInicial()? pickListService.pontoInicial()!: [])"></app-map>
                     <form #form="ngForm" class="form-control" (ngSubmit)="submitPontos(form)">
                         <label for="nome">nome do ponto:</label>
                         <input [value]="ponto?.name ?? `new `" id="nome" type="text" ngModel required name="nome"

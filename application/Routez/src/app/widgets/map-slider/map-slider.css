@@ -1,0 +1,11 @@
+
+/* Spinner */
+.spinner {   /* cor do spinner */
+  animation: spin 1s linear infinite;
+}
+
+/* Animação do spinner */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
