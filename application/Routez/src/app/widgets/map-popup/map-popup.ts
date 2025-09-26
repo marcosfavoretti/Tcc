@@ -1,14 +1,16 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, signal, ViewChild } from '@angular/core';
 import { Map } from "../map/map";
 import { PontoDTO } from '../../../api';
 import { FormsModule, NgForm } from '@angular/forms';
 import { PickListService } from '../../services/PickList.service';
 import { TabsModule } from 'primeng/tabs';
 import { HisticoDePontos } from "../histico-de-pontos/histico-de-pontos";
+import { StepperModule } from "primeng/stepper"
+import { Button } from "primeng/button"
 
 @Component({
   selector: 'app-map-popup',
-  imports: [Map, FormsModule, TabsModule, HisticoDePontos],
+  imports: [Map, Button, FormsModule, TabsModule, HisticoDePontos, StepperModule],
   providers: [],
   standalone: true,
   templateUrl: './map-popup.html',
@@ -18,6 +20,15 @@ export class MapPopup {
   constructor(
     public pickListService: PickListService
   ) { }
+
+  @Input() closeButtonFn!: () => void;
+  @Input() tipo!: "POI" | "INICIAL";
+  ponto = signal<Partial<PontoDTO> | undefined>(undefined);
+
+  setPonto(ponto: Partial<PontoDTO>):void{
+    this.ponto.set(ponto);
+    console.log(this.ponto())
+  }
 
   submitPontos(form: NgForm): void {
     if (!form.valid) throw new Error('formulario invalido');
@@ -39,7 +50,4 @@ export class MapPopup {
     this.closeButtonFn();
   }
 
-  @Input() closeButtonFn!: () => void;
-  @Input() tipo!: "POI" | "INICIAL";
-  ponto!: Partial<PontoDTO>;
 }
