@@ -97,8 +97,9 @@ class AlgoritmoQAOA(AlgoritmoBase):
         print(f"Distância do caminho QAOA: {qaoa_distance}")
         
         best_path_dto: List[PontoDTO] = []
-        if order is not None:  # Verifica se um caminho válido foi encontrado
-            for idx in order + [0]:  # adiciona a cidade inicial no fim
+        if order is not None and len(order) > 0:  # Verifica se um caminho válido foi encontrado
+            # BUG FIX: Adiciona a cidade inicial real (order[0]) ao fim para fechar o ciclo.
+            for idx in order + [order[0]]:
                 best_path_dto.append(pontos[idx])
 
         return best_path_dto, qaoa_distance
@@ -311,4 +312,3 @@ def get_algoritmo_QAOA() -> AlgoritmoQAOA:
     service.adicionar_metrica(SequenciaExecucao())
     service.adicionar_metrica(Distancia())
     return service
-        

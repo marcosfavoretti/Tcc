@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, O
 import * as L from 'leaflet';
 import { PontoDTO } from '../../../api';
 import { PontoDtoCor } from '../../@core/types/PontoDtoCor';
+import 'leaflet-polylinedecorator';
 
 @Component({
   selector: 'app-map',
@@ -52,8 +53,8 @@ export class Map implements AfterViewInit {
   private initMap(): void {
     // Coordenadas que limitam Boituva-SP
     const boituvaBounds = L.latLngBounds(
-      [-23.31, -47.705],  // sudoeste
-      [-23.25, -47.615]   // nordeste
+      [-23.31, -47.705],   // sudoeste
+      [-23.25, -47.615]    // nordeste
     );
 
     this.map = L.map(this.mapInstance()?.nativeElement, {
@@ -94,12 +95,31 @@ export class Map implements AfterViewInit {
       };
     });
   }
+
   private desenharRuas(): void {
     if (!this.ruas?.length) return;
-    L.polyline(this.ruas, {
+  
+    // Desenha a polyline do caminho
+    const polyline = L.polyline(this.ruas, {
       color: 'blue',
       weight: 5
-    })
-      .addTo(this.map);
+    }).addTo(this.map);
+  
+    // Adiciona setas no caminho usando o decorator
+    const arrowDecorator = (L as any).polylineDecorator(polyline, {
+      patterns: [
+        {
+          offset: '35%',
+          repeat: '100%',
+          // FIX: The correct function name is arrowHead, not arrow.
+          symbol: (L as any).Symbol.arrowHead({
+            pixelSize: 5,
+            polygon: false,
+            pathOptions: { stroke: true, color: 'red', weight: 2 }
+          })
+        }
+      ]
+    }).addTo(this.map);
+    
   }
 }

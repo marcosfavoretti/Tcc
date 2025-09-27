@@ -15,12 +15,9 @@
         /> -->
       }
       @else {
-        <app-map-slider/>
-        <!-- <app-map 
-        [selectable]="false"
-        [ruas]="getRepostas()"
-        [preSelectPoint]="pickListService.pois.concat(!pickListService.ponto_inicial? [] : pickListService.ponto_inicial)"
-        /> -->
+        <div class="vh-100 d-flex justify-content-center align-items-center">
+          <app-map-slider />
+        </div>
       }
     </ng-template>
   </p-splitter>
