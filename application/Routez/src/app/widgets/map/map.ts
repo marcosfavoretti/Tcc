@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, viewChild, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, viewChild } from '@angular/core';
 import * as L from 'leaflet';
 import { PontoDTO } from '../../../api';
 import { PontoDtoCor } from '../../@core/types/PontoDtoCor';
@@ -6,7 +6,8 @@ import 'leaflet-polylinedecorator';
 
 @Component({
   selector: 'app-map',
-  imports: [],
+  // Assumindo que a configuração de standalone/módulos está no seu projeto
+  imports: [], 
   templateUrl: './map.html',
   styleUrl: './map.css'
 })
@@ -20,6 +21,18 @@ export class Map implements AfterViewInit {
   mapInstance = viewChild<ElementRef>('mapInstance');
   private currentMarker: L.Marker | null = null;
 
+  // NOVO: Método público para forçar o Leaflet a redimensionar
+  public resizeMap(): void {
+    if (this.map) {
+      // Utilizamos setTimeout(0) para garantir que o redimensionamento ocorra
+      // após o browser ter finalizado o cálculo de layout do container flex.
+      setTimeout(() => {
+        this.map.invalidateSize();
+        // Opcional: Centralizar o mapa novamente para garantir o foco correto.
+        this.map.setView(this.map.getCenter(), this.map.getZoom());
+      }, 0);
+    }
+  }
 
   loadPoints(): void {
     this.preSelectPoint.forEach(
@@ -35,12 +48,12 @@ export class Map implements AfterViewInit {
 
   criarMarcadorComPrimeIcon(iconClass: string, cor: string): L.DivIcon {
     return L.divIcon({
-      className: '', // <-- remove o estilo padrão do Leaflet
+      className: '', 
       html: `
         <i class="${iconClass}" style="color: ${cor}; font-size: 30px;"></i>
       `,
-      iconSize: [30, 30],     // tamanho total do ícone
-      iconAnchor: [15, 30],   // ponto de ancoragem na base do ícone
+      iconSize: [30, 30],     
+      iconAnchor: [15, 30],   
     });
   }
 
@@ -51,21 +64,25 @@ export class Map implements AfterViewInit {
   }
 
   private initMap(): void {
-    // Coordenadas que limitam Boituva-SP
     const boituvaBounds = L.latLngBounds(
-      [-23.31, -47.705],   // sudoeste
-      [-23.25, -47.615]    // nordeste
+      [-23.31, -47.705],  
+      [-23.25, -47.615]   
     );
+    
+    const mapElement = this.mapInstance();
+    if (!mapElement) {
+        console.error('Elemento container do mapa não encontrado!');
+        return;
+    }
 
-    this.map = L.map(this.mapInstance()?.nativeElement, {
-      center: [-23.2822, -47.6715], // Centro da cidade
+    this.map = L.map(mapElement.nativeElement, {
+      center: [-23.2822, -47.6715], 
       zoom: 14,
       minZoom: 13,
       maxZoom: 17,
       maxBounds: boituvaBounds,
-      maxBoundsViscosity: 1.0, // Impede arrastar para fora
+      maxBoundsViscosity: 1.0, 
       zoomControl: true,
-
     });
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

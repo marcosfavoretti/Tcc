@@ -1,4 +1,4 @@
-<div class="d-flex flex-column p-3">
+<div class="d-flex flex-column p-3" style="min-height: 80vh; max-height: 80vh;">
     <button class="btn btn-close align-self-end" (click)="closeButtonFn()"></button>
     <p-tabs value="0">
         <p-tablist>
@@ -7,28 +7,49 @@
         </p-tablist>
         <p-tabpanels>
             <p-tabpanel value="0">
+                <p-stepper [value]="1" class="basis-[50rem]" [linear]="true">
+                    <p-step-list>
+                        <p-step [value]="1">Escolher ponto {{tipo === 'INICIAL' ?
+                            tipo.toLocaleLowerCase():''}}</p-step>
+                        <p-step [value]="2">Nomear ponto</p-step>
+                    </p-step-list>
+                    <p-step-panels>
+                        <p-step-panel [value]="1">
+                            <ng-template #content let-activateCallback="activateCallback">
+                                <app-map (onSelectPoint)="setPonto($event)"
+                                    [preSelectPoint]="pickListService.pois().concat(pickListService.pontoInicial()? pickListService.pontoInicial()!: [])" />
+                                <button 
+                                (click)="activateCallback(2)"
+                                class="btn btn-group btn-success w-100 d-flex justify-content-center rounded-top-0" [disabled]="!ponto()">
+                                    <i class="pi pi-arrow-right"></i>
+                                </button>
+                            </ng-template>
+                        </p-step-panel>
 
-                <h1 class="display-5 text-center text-secondary">adicionar ponto {{tipo === 'INICIAL' ?
-                    tipo.toLocaleLowerCase():''}}</h1>
-                <div class="container py-2 d-flex flex-column gap-3">
-                    <app-map (onSelectPoint)="ponto = $event"
-                        [preSelectPoint]="pickListService.pois().concat(pickListService.pontoInicial()? pickListService.pontoInicial()!: [])"></app-map>
-                    <form #form="ngForm" class="form-control" (ngSubmit)="submitPontos(form)">
-                        <label for="nome">nome do ponto:</label>
-                        <input [value]="ponto?.name ?? `new `" id="nome" type="text" ngModel required name="nome"
-                            class="input-group input-group-text" [disabled]="!ponto">
+                        <p-step-panel [value]="2">
+                            <ng-template #content let-activateCallback="activateCallback">
+                                <form #form="ngForm" class="d-flex flex-column gap-2" (ngSubmit)="submitPontos(form)">
+                                    <label for="nome">nome do ponto:</label>
+                                    <input [value]="ponto()?.name ?? `new `" id="nome" type="text" ngModel required
+                                        name="nome" class="input-group input-group-text" [disabled]="!ponto()">
 
-                        <label for="latitude">latitude:</label>
-                        <input type="text" id="latitude" [ngModel]="ponto?.latitude" required name="latitude"
-                            class="input-group input-group-text" [disabled]="true">
+                                    <label for="latitude">latitude:</label>
+                                    <input type="text" id="latitude" [ngModel]="ponto()?.latitude" required
+                                        name="latitude" class="input-group input-group-text" [disabled]="true">
 
-                        <label for="longitude">longitude:</label>
-                        <input type="text" id="longitude" [ngModel]="ponto?.longitude" required name="longitude"
-                            class="input-group input-group-text" [disabled]="true">
-                        <hr>
-                        <input type="submit" class="btn btn-group btn-secondary" name="" id="" value="submit">
-                    </form>
-                </div>
+                                    <label for="longitude">longitude:</label>
+                                    <input type="text" id="longitude" [ngModel]="ponto()?.longitude" required
+                                        name="longitude" class="input-group input-group-text" [disabled]="true">
+                                    <hr>
+                                    <input type="submit" class="btn btn-group btn-success" name="" id=""
+                                        value="submit">
+                                </form>
+                            </ng-template>
+                        </p-step-panel>
+
+
+                    </p-step-panels>
+                </p-stepper>
             </p-tabpanel>
             <p-tabpanel value="1">
                 <p>selecione alguns pontos já utilizado:</p>
