@@ -1,0 +1,47 @@
+/* Usamos :host ::ng-deep para "furar" o encapsulamento do Angular
+   e aplicar estilos aos componentes internos da PrimeNG. */
+.map-wrapper{
+  height: 50vh;
+}
+/* 1. Faz o componente de abas (tabs) ocupar o espaço e se comportar como flex */
+:host ::ng-deep p-tabs {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Essencial para crescer */
+  min-height: 0; /* Previne problemas de overflow no flex */
+}
+
+/* 2. Faz a área de conteúdo das abas (panels) crescer */
+:host ::ng-deep .p-tabview-panels {
+  display: flex;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+/* 3. Faz o painel da aba individual (onde o stepper está) preencher a área de conteúdo */
+:host ::ng-deep .p-tabview-panel {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* 4. Faz o stepper ocupar todo o espaço do painel da aba */
+:host ::ng-deep p-stepper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* 5. Faz a área de conteúdo do stepper (onde o mapa está) crescer */
+:host ::ng-deep .p-stepper-panels {
+  display: flex;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+/* 6. Garante que o painel do step se comporte corretamente como um container flex */
+:host ::ng-deep p-step-panel {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

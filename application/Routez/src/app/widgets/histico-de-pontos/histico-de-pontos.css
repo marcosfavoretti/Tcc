@@ -1,0 +1,4 @@
+.historico-list {
+    max-height: 300px; /* ou o valor que desejar */
+    overflow-y: auto;
+  }

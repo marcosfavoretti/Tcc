@@ -1,37 +1,73 @@
-
-/* Spinner */
-.spinner {   /* cor do spinner */
-  animation: spin 1s linear infinite;
+/* 1. Prepara o carrossel para ser o "pai" do posicionamento absoluto */
+:host ::ng-deep .p-carousel {
+  position: relative;
 }
 
-/* Animação do spinner */
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+/* Estilo principal para o painel de métricas */
+.metricas-painel {
+  /* Funcionalidades */
+  resize: both; /* Permite redimensionar */
+  overflow: auto; /* Adiciona rolagem se o conteúdo for maior */
+  width: 320px; /* Largura inicial */
+  max-height: 500px; /* Altura máxima */
+  min-width: 200px; /* Largura mínima ao redimensionar */
+  min-height: 150px; /* Altura mínima ao redimensionar */
 
-.carousel-container {
-  height: 100vh;
+  /* Estilo "Liquid Crystal" escuro */
+  background-color: rgba(255, 255, 255, 0.24); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   padding: 1rem;
+  color: white; 
 }
 
-:host ::ng-deep .p-carousel,
-:host ::ng-deep .p-carousel-content,
-:host ::ng-deep .p-carousel-container {
-  width: 100%;
-  height: 100%;
+/* Garante que os itens da lista dentro do painel sejam transparentes */
+.metricas-painel .list-group-item {
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem 0;
+  color: white; /* Garante que o texto dentro da lista seja branco */
 }
 
-.carousel-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;  /* ocupa toda a altura do container */
-  width: 100%;   /* ocupa toda a largura */
+/* Estilo para o cabeçalho, que serve como "alça" para arrastar */
+.metricas-painel .cabecalho-arrastavel {
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.map-container {
-  border: 2px solid #dee2e6;
-  background: #f1f3f5;
-  height: 100%;
+/* Ajusta a cor do <hr> e do <h2> dentro do painel */
+.metricas-painel .cabecalho-arrastavel h2 {
+    color: white; /* Sobrescreve o 'text-primary' */
+}
+.metricas-painel .cabecalho-arrastavel hr {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 2. Estiliza os botões (anterior e próximo) */
+:host ::ng-deep .p-carousel .p-carousel-prev,
+:host ::ng-deep .p-carousel .p-carousel-next {
+  position: absolute;   /* Tira os botões do fluxo normal da página */
+  top: 50%;             /* Alinha verticalmente ao centro */
+  transform: translateY(-50%); /* Ajuste fino para centralização perfeita */
+  z-index: 10;          /* Garante que fiquem SOBRE o conteúdo do mapa */
+  
+  /* Estilos opcionais para melhor aparência */
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  border-radius: 50%;
+  border: none;
+  width: 3rem;
+  height: 3rem;
+}
+
+/* 3. Posiciona o botão "anterior" na esquerda */
+:host ::ng-deep .p-carousel .p-carousel-prev {
+  left: 1rem; /* Distância da borda esquerda */
+}
+
+/* 4. Posiciona o botão "próximo" na direita */
+:host ::ng-deep .p-carousel .p-carousel-next {
+  right: 1rem; /* Distância da borda direita */
 }

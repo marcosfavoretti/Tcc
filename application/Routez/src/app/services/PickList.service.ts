@@ -53,9 +53,24 @@ export class PickListService {
         this._pontoInicial.set(undefined);
     }
 
+    /**
+     * CORRIGIDO: Agora, após remover um item, o método remapeia a lista
+     * e reatribui as cores sequencialmente para evitar duplicatas.
+     */
     removePOIs(ponto: PontoDtoCor): void {
-        console.log(ponto)
-        this._pois.update(pois => pois.filter(p => p.name !== ponto.name));
-        console.log(this._pois())
+        this._pois.update(pois => {
+            const poisFiltrados = pois.filter(p => p.name !== ponto.name);
+            
+            // Reatribui as cores para manter a sequência correta
+            const poisRecoloridos = poisFiltrados.map((p, index) => ({
+                ...p,
+                cor: Object.values(ColorCSS)[index + 1]
+            }));
+            
+            return poisRecoloridos;
+        });
+        
+        // Não se esqueça de remover também do localStorage
+        this.localStorage.removeItem(`POI-${ponto.name}`);
     }
 }

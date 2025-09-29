@@ -1,10 +1,20 @@
-<div class="d-flex flex-column">
-    <ul class="list-group list-unstyled">
-        @for (entries of getMetricasEntries(); track $index) {
-            <li class="list-group-item">
-                <span><strong>{{entries[0]}}: </strong></span>
-                <span>{{entries[1]}}</span>
-            </li>
-        }
-    </ul>
+<div class="d-flex flex-column metricas-painel">
+  <ul class="list-group">
+    <!-- <li class="list-group-item cabecalho-arrastavel">
+      <strong>Métricas</strong>
+    </li> -->
+    @for (entries of getMetricasEntries(); track $index) {
+    <li class="list-group-item">
+      <span><strong>{{entries[0]}}: </strong></span>
+      @if (isBase64Image(entries[1])) {
+
+      <p-image [preview]="true" width="100px" [src]="entries[1]" [appendTo]="'body'" alt="Visualização do Circuito">
+      </p-image>
+
+      } @else {
+      <span>{{ entries[1] }}</span>
+      }
+    </li>
+    }
+  </ul>
 </div>

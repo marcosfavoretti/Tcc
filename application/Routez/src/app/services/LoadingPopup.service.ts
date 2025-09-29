@@ -62,8 +62,7 @@ export class LoadingPopupService {
             console.log('ErroPopupComponent foi fechado.');
           });
           console.log(err);
-          errorRef.componentInstance.erroMessage = err.response?.data?.message;
-          errorRef.componentInstance.erroMessageErr = err.response?.data?.error;
+          errorRef.componentInstance.erroMessage = err?.message;
           errorRef.componentInstance.closeButtonFn = () => errorRef.close(); // Passa a função de fechar para o input closeButtonFn
           return of(null);
         })

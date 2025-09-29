@@ -1,46 +1,52 @@
-<div class="px-2">
-  <p-carousel [value]="gerenciaAlgoritmoResService.respostas$()" [numVisible]="1" [numScroll]="1"
-    orientation="horizontal">
+<div>
+  <p-carousel [value]="respostasComEstado()" [numVisible]="1" [numScroll]="1" orientation="horizontal">
+    <ng-template pTemplate="previousicon">
+      <i class="pi pi-chevron-left text-xl"></i>
+    </ng-template>
 
-    <ng-template pTemplate="item" let-product$>
-      @if (castObs(product$) | async; as product) {
+    <ng-template pTemplate="nexticon">
+      <i class="pi pi-chevron-right text-xl"></i>
+    </ng-template>
+    <ng-template pTemplate="item" let-productState$>
+      @if (castObs(productState$) | async; as state) {
 
-      <!-- Card ocupa todo container -->
-      <div class="carousel-item card border-0 rounded-4 w-100 h-100 p-4">
+      @if (state.value; as product) {
+      <div class="position-relative">
 
-        <!-- Header -->
-        <div class="text-center mb-3">
-          <h2 class="fw-bold text-primary m-0">{{ product.algoritmo }}</h2>
-          <hr class="w-25 mx-auto opacity-50 mt-2">
-        </div>
+        <div class="position-absolute metricas-painel" style="z-index: 10000">
 
-        <!-- Conteúdo -->
-        <div class="row g-3 flex-grow-1 h-100">
-
-          <!-- Métricas -->
-          <div class="col-3 d-flex flex-column align-items-center justify-content-start border-end pe-3 h-100">
-            <app-metricas [metricas]="product.metricas"></app-metricas>
+          <div class="text-center mb-3 cabecalho-arrastavel">
+            <h2 class="fw-bold text-dark m-0">{{ product.algoritmo }}</h2>
+            <hr class="w-50 mx-auto bg-dark opacity-50 mt-2">
           </div>
 
-          <!-- Mapa -->
-          <div class="col-9 h-100">
-            <div class="rounded-3 overflow-hidden h-100 w-100 bg-light">
-              <app-map
-                [preSelectPoint]="pickListService.pois().concat(!pickListService.pontoInicial()? [] : pickListService.pontoInicial()!)"
-                [selectable]="false" [ruas]="product.ruas">
-              </app-map>
-            </div>
-          </div>
-
+          <app-metricas [metricas]="product.metricas"></app-metricas>
         </div>
+        <div style="height: 95vh;">
+          <app-map
+            [preSelectPoint]="pickListService.pois().concat(!pickListService.pontoInicial()? [] : pickListService.pontoInicial()!)"
+            [selectable]="false" [ruas]="product.ruas">
+          </app-map>
+        </div>
+
       </div>
-
       }
-      @else {
+
+      @else if (state.error) {
+      <div
+        class="carousel-item card border-danger rounded-4 w-100 h-100 p-4 d-flex flex-column justify-content-center align-items-center">
+        <i class="pi pi-exclamation-triangle text-danger" style="font-size: 3rem;"></i>
+        <h4 class="text-danger mt-3">Falha no Processamento</h4>
+        <p class="text-muted">Ocorreu um erro ao executar este algoritmo.</p>
+      </div>
+      }
+      @else if (state.loading) {
       <div class="d-flex justify-content-center align-items-center w-100 h-100">
         <i class="pi pi-spinner-dotted spinner text-primary" style="font-size: 3rem;"></i>
       </div>
       }
+      }
     </ng-template>
+
   </p-carousel>
 </div>

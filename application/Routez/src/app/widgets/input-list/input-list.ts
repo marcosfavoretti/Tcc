@@ -1,10 +1,8 @@
 import { Component, inject, input, Input, OnInit, Signal } from '@angular/core';
 import { PickListService } from '../../services/PickList.service';
-import { PontoDTO } from '../../../api';
 import { ItemList } from "../item-list/item-list";
 import { LoadingPopupService } from '../../services/LoadingPopup.service';
 import { MapPopup } from '../map-popup/map-popup';
-import { ColorCSS } from '../../@core/enum/Colorcss.enum';
 import { PontoDtoCor } from '../../@core/types/PontoDtoCor';
 
 @Component({

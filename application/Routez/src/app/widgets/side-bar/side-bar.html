@@ -8,12 +8,13 @@
   <!-- Lista de pontos -->
   <app-lista-de-pontos class="flex-grow-1 overflow-auto"></app-lista-de-pontos>
 
-  <div class="d-flex gap-2 justify-content-center align-items-center mt-auto">
-    <button (click)="op.toggle($event)" class="btn btn-group btn-outline-dark border-0 py-4 flew-grow-1">
+  <div class="d-flex justify-content-center align-items-center p-2">
+    <button (click)="op.toggle($event)"
+      class="h-100 py-4 w-25 rounded-end-0 btn d-flex align-items-center justify-content-center btn-group btn-dark">
       <i class="pi pi-inbox"></i>
     </button>
     <button (click)="requestAlgoritmo()"
-      class="btn btn-secondary flex-grow-1 d-flex gap-2 py-4 justify-content-center align-items-center mt-auto">
+      class="h-100 py-4 w-75 btn rounded-start-0 btn-group btn-secondary justify-content-center d-flex align-items-center gap-2">
       <i class="pi pi-map"></i>
       <span>Traçar Rota</span>
     </button>

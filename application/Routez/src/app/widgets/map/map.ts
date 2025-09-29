@@ -38,7 +38,7 @@ export class Map implements AfterViewInit {
     this.preSelectPoint.forEach(
       point =>
         L.marker([point.latitude, point.longitude], {
-          icon: this.criarMarcadorComPrimeIcon('pi pi-map-marker', point.cor)
+          icon: this.criarMarcadorComPrimeIcon('bi bi-geo-fill', point.cor)
         })
           .addTo(this.map)
           .bindPopup(`Nome:${point.name.toLocaleLowerCase()}<br>Latitude: ${point.latitude.toFixed(5)}<br>Longitude: ${point.longitude.toFixed(5)}`)
@@ -98,7 +98,7 @@ export class Map implements AfterViewInit {
 
         this.selectable && (
           this.currentMarker = L.marker([lat, lng], {
-            icon: this.criarMarcadorComPrimeIcon('pi pi-map-marker', 'black')
+            icon: this.criarMarcadorComPrimeIcon('bi bi-geo-fill', 'black')
           })
             .addTo(this.map)
             .bindPopup(`Lat: ${lat.toFixed(5)}<br>Lng: ${lng.toFixed(5)}`)
@@ -120,10 +120,11 @@ export class Map implements AfterViewInit {
     const polyline = L.polyline(this.ruas, {
       color: 'blue',
       weight: 5
-    }).addTo(this.map);
+    })
+      .addTo(this.map);
   
     // Adiciona setas no caminho usando o decorator
-    const arrowDecorator = (L as any).polylineDecorator(polyline, {
+    (L as any).polylineDecorator(polyline, {
       patterns: [
         {
           offset: '35%',

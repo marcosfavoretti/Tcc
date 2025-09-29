@@ -5,25 +5,22 @@
     <ul class="list-group">
         @for (item of itens(); track $index) {
         <li class="list-group-item">
-            <div
-                class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-2">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 overflow-x-auto">
 
-                <!-- Item principal -->
                 <app-item-list [cor]="item.cor" [ponto]="item" class="flex-grow-1"></app-item-list>
 
-                <!-- Botão de remover -->
-                <div class="d-flex justify-content-end">
-                    <button class="btn btn-close" (click)="removePoint(item)"></button>
+                <div class="align-self-end align-self-md-auto">
+                    <button class="btn btn-close" (click)="removePoint(item)" aria-label="Remover ponto"></button>
                 </div>
 
             </div>
         </li>
         }
     </ul>
-    @if ((tipo==='INICIAL' && itens().length < 1) || tipo==='POI' ) { <button (click)="showForms()"
-        class="btn btn-outline-secondary border-0 d-flex align-items-center gap-1">
+@if ((tipo==='INICIAL' && itens().length < 1) || tipo==='POI' ) { <button (click)="showForms()"
+    class="btn btn-outline-secondary border-0 d-flex align-items-center justify-content-center gap-1 mt-2">
         <i class="pi pi-plus"></i>
         <span>adicionar ponto</span>
-        </button>
-        }
+    </button>
+    }
 </div>

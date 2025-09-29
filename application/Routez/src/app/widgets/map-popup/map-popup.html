@@ -1,4 +1,4 @@
-<div class="d-flex flex-column p-3" style="min-height: 80vh; max-height: 80vh;">
+<div class="d-flex flex-column p-3 h-100" style="height: 80vh; max-height: 80vh;">
     <button class="btn btn-close align-self-end" (click)="closeButtonFn()"></button>
     <p-tabs value="0">
         <p-tablist>
@@ -16,13 +16,17 @@
                     <p-step-panels>
                         <p-step-panel [value]="1">
                             <ng-template #content let-activateCallback="activateCallback">
-                                <app-map (onSelectPoint)="setPonto($event)"
-                                    [preSelectPoint]="pickListService.pois().concat(pickListService.pontoInicial()? pickListService.pontoInicial()!: [])" />
-                                <button 
-                                (click)="activateCallback(2)"
-                                class="btn btn-group btn-success w-100 d-flex justify-content-center rounded-top-0" [disabled]="!ponto()">
-                                    <i class="pi pi-arrow-right"></i>
-                                </button>
+                                <div class="d-flex flex-column flex-grow-1">
+                                    <div class="map-wrapper">
+                                        <app-map (onSelectPoint)="setPonto($event)"
+                                            [preSelectPoint]="pickListService.pois().concat(pickListService.pontoInicial()? pickListService.pontoInicial()!: [])">
+                                        </app-map>
+                                    </div>
+                                    <button (click)="activateCallback(2)"
+                                        class="btn btn-group btn-success w-100 d-flex justify-content-center rounded-top-0" [disabled]="!ponto()">
+                                        <i class="pi pi-arrow-right"></i>
+                                    </button>
+                                </div>
                             </ng-template>
                         </p-step-panel>
 
@@ -41,8 +45,7 @@
                                     <input type="text" id="longitude" [ngModel]="ponto()?.longitude" required
                                         name="longitude" class="input-group input-group-text" [disabled]="true">
                                     <hr>
-                                    <input type="submit" class="btn btn-group btn-success" name="" id=""
-                                        value="submit">
+                                    <input type="submit" class="btn btn-group btn-success" name="" id="" value="submit">
                                 </form>
                             </ng-template>
                         </p-step-panel>
