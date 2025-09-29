@@ -3,10 +3,16 @@ from typing import List, Tuple, Any, Dict
 from core.abstract.metricas_base import MetricasBase
 import numpy as np
 from core.dto.algoritmos_dto import PontoDTO
-
+from core.enum.tipos_algoritmos import TipoAlgoritmo
 class AlgoritmoBase(ABC):
     def __init__(self):
         self._metricas: List[MetricasBase]  = [] # Lista para as métricas
+
+    @property
+    @abstractmethod
+    def TIPO_ALGORITMO(self) -> TipoAlgoritmo: # <-- Adicionar propriedade abstrata
+        """Define o tipo de algoritmo que a classe representa."""
+        pass
 
     def adicionar_metrica(self, metrica: MetricasBase):
         self._metricas.append(metrica)

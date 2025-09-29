@@ -13,9 +13,15 @@ from qiskit.quantum_info import SparsePauliOp
 from qiskit_ibm_runtime import SamplerV2, EstimatorV2, QiskitRuntimeService,Sampler,Estimator
 from scipy.optimize import minimize
 from services.sequencia_execucao import SequenciaExecucao
+from services.metrica_preco import MetricaPreco
+from services.metrica_memoria import UsoMemoria
+from services.metrica_circuito_img import CircuitoQuanticoImagem
 
+from core.enum.tipos_algoritmos import TipoAlgoritmo
 class AlgoritmoQAOA(AlgoritmoBase):
-    
+    TIPO_ALGORITMO = TipoAlgoritmo.QAOA
+    circuito_transpilado = None    
+
     BACKEND = AerSimulator()#aqui setei como simulador em vez do computador quantico da ibm
     REPS = 1
     
@@ -37,6 +43,7 @@ class AlgoritmoQAOA(AlgoritmoBase):
         # Criar ansatz QAOA
         qaoa_ansatz = QAOAAnsatz(hamiltonian, reps=self.REPS)
         qaoa_ansatz = transpile(qaoa_ansatz,backend=simulator,optimization_level=1)
+        self.circuito_transpilado = qaoa_ansatz
         hamiltonian = hamiltonian.apply_layout(qaoa_ansatz.layout) 
         print(f"Circuito QAOA criado com {qaoa_ansatz.num_qubits} qubits e {qaoa_ansatz.num_parameters} parâmetros")
     
@@ -97,9 +104,8 @@ class AlgoritmoQAOA(AlgoritmoBase):
         print(f"Distância do caminho QAOA: {qaoa_distance}")
         
         best_path_dto: List[PontoDTO] = []
-        if order is not None and len(order) > 0:  # Verifica se um caminho válido foi encontrado
-            # BUG FIX: Adiciona a cidade inicial real (order[0]) ao fim para fechar o ciclo.
-            for idx in order + [order[0]]:
+        if order is not None:  # Verifica se um caminho válido foi encontrado
+            for idx in order + [0]:  # adiciona a cidade inicial no fim
                 best_path_dto.append(pontos[idx])
 
         return best_path_dto, qaoa_distance
@@ -311,4 +317,9 @@ def get_algoritmo_QAOA() -> AlgoritmoQAOA:
     service.adicionar_metrica(TempoExecucao())
     service.adicionar_metrica(SequenciaExecucao())
     service.adicionar_metrica(Distancia())
+    service.adicionar_metrica(MetricaPreco(tipo_recurso='qpu')) # <--- NOVO
+    service.adicionar_metrica(UsoMemoria())
+    service.adicionar_metrica(CircuitoQuanticoImagem())      
+      
     return service
+        

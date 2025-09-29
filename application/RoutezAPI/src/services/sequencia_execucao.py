@@ -18,4 +18,4 @@ class SequenciaExecucao(MetricasBase):
     def resultadoFinal(self) -> str:
         if self.sequencia is None:
             raise Exception('metrica de tempo mal executada')  # Ou lançar uma exceção se preferir
-        return ', '.join(self.sequencia)
+        return '→ '.join(self.sequencia)

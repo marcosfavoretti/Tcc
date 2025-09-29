@@ -14,11 +14,8 @@ class AlgoritmoService:
         self.matrixService = matrixService 
     
     def run(self, dto: AlgoritmosDto) -> AlgoritmosResponseDto:
-        print("Instância de PoiDAO no AlgoritmoService.run:", self.poi_dao)
         
         algoritmo = FabricaAlgoritmosService.build(dto.algoritmo)
-        
-        print(algoritmo)
         
         pois_salvos: List[Node] = []
         
@@ -46,9 +43,6 @@ class AlgoritmoService:
         
         best_path, min_distance, resultadoDasMetricas = algoritmo.executar(dist_matrix_np, pois_salvos)
         
-        print("BEST PATH ->>:", best_path)
-        print("POIS SALVOS:", pois_salvos)
-                
         point_index = {p['osmid']: i for i, p in enumerate(pois_salvos)}
 
         street_ids = []
@@ -60,8 +54,6 @@ class AlgoritmoService:
 
         resultList =  list(chain.from_iterable(street_ids))
 
-        print(resultList, street_ids)
-        
         return AlgoritmosResponseDto(
             algoritmo=dto.algoritmo,
             menorCaminho=min_distance,

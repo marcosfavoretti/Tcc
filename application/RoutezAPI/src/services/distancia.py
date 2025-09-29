@@ -14,4 +14,4 @@ class Distancia(MetricasBase):
     def resultadoFinal(self) -> str:
         if self.distancia is None:
             raise Exception('metrica de tempo mal executada')  # Ou lançar uma exceção se preferir
-        return str(self.distancia)
+        return str(self.distancia)+'m'

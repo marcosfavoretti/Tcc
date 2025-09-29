@@ -6,9 +6,12 @@ from core.abstract.algoritmo_base import AlgoritmoBase
 from .tempo_execucao import TempoExecucao
 from services.distancia import Distancia
 from services.sequencia_execucao import SequenciaExecucao 
-
+from core.enum.tipos_algoritmos import TipoAlgoritmo
+from services.metrica_preco import MetricaPreco
+from services.metrica_memoria import UsoMemoria
 
 class ForcaBrutaService(AlgoritmoBase):
+    TIPO_ALGORITMO = TipoAlgoritmo.FORCA_BRUTA # <-- Implementar propriedade
     
     def __init__(self):
         super().__init__()
@@ -58,4 +61,6 @@ def get_forca_bruta_service() -> ForcaBrutaService:
     service.adicionar_metrica(TempoExecucao())
     service.adicionar_metrica(SequenciaExecucao())
     service.adicionar_metrica(Distancia())
+    service.adicionar_metrica(MetricaPreco(tipo_recurso='cpu')) # <--- NOVO
+    service.adicionar_metrica(UsoMemoria())     
     return service
