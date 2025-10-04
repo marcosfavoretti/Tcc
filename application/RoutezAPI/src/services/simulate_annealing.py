@@ -9,7 +9,7 @@ from services.distancia import Distancia
 from services.tempo_execucao import TempoExecucao
 from services.sequencia_execucao import SequenciaExecucao
 from services.metrica_memoria import UsoMemoria
-
+from services.metrica_preco import MetricaPreco
 class AlgoritmoSimulatedAnnealing(AlgoritmoBase):
     """
     Implementação do algoritmo Simulated Annealing para resolver o Problema do Caixeiro Viajante (TSP).
@@ -23,7 +23,6 @@ class AlgoritmoSimulatedAnnealing(AlgoritmoBase):
 
     def _executar_logica_algoritmo(self, dist_matrix: np.ndarray, pontos: List[PontoDTO]) -> Tuple[List[PontoDTO], float]:
         num_cidades = len(pontos)
-        
         # 1. Gera uma solução inicial aleatória (garantindo que o ponto 0 seja o início)
         solucao_atual = list(range(num_cidades))
         random.shuffle(solucao_atual)
@@ -85,5 +84,6 @@ def get_algoritmo_SA() -> AlgoritmoSimulatedAnnealing:
     service.adicionar_metrica(TempoExecucao())
     service.adicionar_metrica(SequenciaExecucao())
     service.adicionar_metrica(Distancia())
+    service.adicionar_metrica(MetricaPreco(tipo_recurso='cpu', provider='aws')) # <--- NOVO
     service.adicionar_metrica(UsoMemoria())
     return service
