@@ -4,6 +4,7 @@ from services.algoritmo_genetico import get_algoritmo_genetico
 from services.algoritmo_qaoa import get_algoritmo_QAOA
 from services.algoritmo_qaoa_amazon import get_algoritmo_QAOA_Amazon
 from services.simulate_annealing import get_algoritmo_SA
+from services.algoritmo_iqaoa_amazon import get_algoritmo_IQAOA_Amazon
 from typing import List
 class FabricaAlgoritmosService:
     
@@ -12,6 +13,7 @@ class FabricaAlgoritmosService:
         """Retorna uma lista com uma instância de cada algoritmo disponível."""
         return [
             get_forca_bruta_service(),
+            get_algoritmo_IQAOA_Amazon(),
             get_algoritmo_genetico(),
             get_algoritmo_QAOA(),
             get_algoritmo_QAOA_Amazon(),
