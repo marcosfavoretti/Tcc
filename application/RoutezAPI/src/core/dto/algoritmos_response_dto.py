@@ -1,9 +1,14 @@
 from pydantic import BaseModel, Field
 from typing import List, Dict, Any
-from core.enum.tipos_algoritmos import TipoAlgoritmo
+
+class MetricaDto(BaseModel):
+    name: str = Field(..., description="Nome da métrica")
+    description: str = Field(..., description="Descrição da métrica")
+    result: str = Field(..., description="Resultado da métrica")
+
 
 class AlgoritmosResponseDto(BaseModel):
-    algoritmo: TipoAlgoritmo = Field(
+    algoritmo: str = Field(
         ...,
         description='Alias do algoritmo que sera utilizado',
         examples=['FORCA_BRUTA']
@@ -12,7 +17,7 @@ class AlgoritmosResponseDto(BaseModel):
         ...,
         description='Ruas para traçar',
     )
-    metricas: Dict[str, str] = Field(
+    metricas: List[MetricaDto] = Field(
         description='Objeto com as metricas dos algoritmos'
     )
     menorCaminho: float = Field(

@@ -1,5 +1,6 @@
 from core.abstract.metricas_base import MetricasBase
 import json
+from core.dto.algoritmos_response_dto import MetricaDto
 
 class MetricasQuanticas(MetricasBase):
     
@@ -9,9 +10,8 @@ class MetricasQuanticas(MetricasBase):
     def on_inicio_execucao(self, algoritmo):
         self.dados_circuito = {}
 
+
     def on_fim_execucao(self, algoritmo, melhorCaminho, distancia):
-        # O algoritmo QAOA deve expor o circuito transpilado
-        # Ex: algoritmo.circuito_transpilado
         if hasattr(algoritmo, 'circuito_transpilado'):
             circuito = algoritmo.circuito_transpilado
             self.dados_circuito['profundidade'] = circuito.depth()
@@ -25,4 +25,5 @@ class MetricasQuanticas(MetricasBase):
         if not self.dados_circuito:
             return "Nenhuma métrica quântica coletada."
         
-        return json.dumps(self.dados_circuito)
+        value = json.dumps(self.dados_circuito)
+        return MetricaDto(name=self.__class__.__name__,description=self.get_description(), result=value)

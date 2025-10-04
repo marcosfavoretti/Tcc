@@ -1,6 +1,6 @@
 
 from fastapi import FastAPI
-from delivery import algoritmos_rotas
+from delivery import algoritmos_rotas, poi_rotas
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -9,6 +9,7 @@ load_dotenv()
 app = FastAPI()
 
 app.include_router(algoritmos_rotas.router)
+app.include_router(poi_rotas.router)
 
 app.add_middleware(
     CORSMiddleware,

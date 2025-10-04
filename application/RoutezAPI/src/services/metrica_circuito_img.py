@@ -1,54 +1,56 @@
-from core.abstract.metricas_base import MetricasBase
 import matplotlib
-# matplotlib.use('Agg') # <-- 1. ADICIONE ESTA LINHA ANTES DE IMPORTAR O PYPLOT
+matplotlib.use('Agg') # Mantém o backend não interativo
 import matplotlib.pyplot as plt
 import io
 import base64
-import threading
+from core.abstract.metricas_base import MetricasBase
+from core.dto.algoritmos_response_dto import MetricaDto
 
 class CircuitoQuanticoImagem(MetricasBase):
     
     def __init__(self):
-        self.base64_image = None
-        self._thread = None
+        # Apenas inicializa o atributo que guardará o circuito
+        self.circuito_a_desenhar = None
+    
+    def get_description(self):
+        return "Imagem ilustrativa do circuito quântico responsável por rodar o algoritmo"
 
     def on_inicio_execucao(self, algoritmo) -> None:
         pass
 
-    def _gerar_imagem_em_background(self, circuito):
+    def on_fim_execucao(self, algoritmo, melhorCaminho, distancia):
+        """
+        Este método agora só tem a responsabilidade de capturar e armazenar
+        o circuito ao final da execução principal do algoritmo.
+        """
+        if hasattr(algoritmo, 'circuito_transpilado'):
+            self.circuito_a_desenhar = algoritmo.circuito_transpilado
+
+    def resultadoFinal(self) -> MetricaDto:
+        """
+        A lógica de geração da imagem agora está aqui. 
+        Este método será chamado em uma thread pelo AlgoritmoService.
+        """
+        if self.circuito_a_desenhar is None:
+            return MetricaDto(name="Circuito Quântico usado", description=self.get_description(), result=None)
+
         try:
-            fig = circuito.draw('mpl')
+            # Lógica de geração de imagem que antes estava na thread
+            fig = self.circuito_a_desenhar.draw('mpl', scale=1.4)
             
             buf = io.BytesIO()
             fig.savefig(buf, format='png', bbox_inches='tight')
-            plt.close(fig)
+            plt.close(fig) # Importante para liberar memória
             buf.seek(0)
             
             image_bytes = buf.getvalue()
             base64_bytes = base64.b64encode(image_bytes)
             base64_string = base64_bytes.decode('utf-8')
             
-            self.base64_image = f"data:image/png;base64,{base64_string}"
+            value = f"data:image/png;base64,{base64_string}"
 
         except Exception as e:
-            print(f"Erro na thread ao gerar a imagem Base64 do circuito: {e}")
-            self.base64_image = "Erro ao gerar imagem."
-
-    def on_fim_execucao(self, algoritmo, melhorCaminho, distancia):
-        if hasattr(algoritmo, 'circuito_transpilado') and algoritmo.circuito_transpilado is not None:
-            # A lógica da thread continua a mesma
-            self._thread = threading.Thread(
-                target=self._gerar_imagem_em_background, 
-                args=(algoritmo.circuito_transpilado,)
-            )
-            self._thread.start()
-            self.base64_image = "Processando imagem..."
-
-    def resultadoFinal(self) -> str:
-        if self._thread is not None:
-            self._thread.join()
-
-        if self.base64_image and self.base64_image != "Processando imagem...":
-            return self.base64_image
-            
-        return "Nenhum circuito para exibir ou falha na geração."
+            print(f"Erro ao gerar a imagem Base64 do circuito: {e}")
+            value = "Erro ao gerar imagem."
+        
+        return MetricaDto(name="Circuito Quântico usado", description=self.get_description(), result=value)

@@ -1,4 +1,5 @@
 from core.abstract.metricas_base import MetricasBase
+from core.dto.algoritmos_response_dto import MetricaDto
 
 class Distancia(MetricasBase):
     
@@ -14,4 +15,5 @@ class Distancia(MetricasBase):
     def resultadoFinal(self) -> str:
         if self.distancia is None:
             raise Exception('metrica de tempo mal executada')  # Ou lançar uma exceção se preferir
-        return str(self.distancia)+'m'
+        value = str(self.distancia)+'m'
+        return MetricaDto(name="Distância",description=self.get_description(), result=value)

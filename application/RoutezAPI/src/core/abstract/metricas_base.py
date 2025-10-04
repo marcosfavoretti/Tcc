@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-
+from core.dto.algoritmos_response_dto import MetricaDto
 class MetricasBase(ABC):
     
     @abstractmethod
@@ -12,10 +12,17 @@ class MetricasBase(ABC):
         """
         pass
 
+
+    def get_description(self)->str:
+        """
+        define o que vai ser escrito no tooltip
+        """
+        return "sem descrição"
+
     @abstractmethod
     def on_fim_execucao(self, algoritmo, resultado) -> None:
         pass
     
     @abstractmethod
-    def resultadoFinal(self) -> str:
+    def resultadoFinal(self) -> MetricaDto:
         pass

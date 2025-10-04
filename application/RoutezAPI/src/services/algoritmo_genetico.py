@@ -7,7 +7,6 @@ from typing import List, Tuple
 from core.dto.algoritmos_dto import PontoDTO
 import random
 from services.sequencia_execucao import SequenciaExecucao
-from core.enum.tipos_algoritmos import TipoAlgoritmo
 from services.metrica_preco import MetricaPreco
 from services.metrica_memoria import UsoMemoria
 
@@ -18,7 +17,7 @@ class AlgoritmoGenetico(AlgoritmoBase):
     MUTATION_RATE = 0.02
     TOURNAMENT_SIZE = 5 
     ELITISM_COUNT = 1 
-    TIPO_ALGORITMO = TipoAlgoritmo.GENETICO 
+    TIPO_ALGORITMO = "Genêtico" 
 
     
     def _executar_logica_algoritmo(self, dist_matrix: np.ndarray, pontos: List[PontoDTO]) -> Tuple[List[PontoDTO], float]:
@@ -71,8 +70,6 @@ class AlgoritmoGenetico(AlgoritmoBase):
         
         [castedRoute.append(pontos[cromossomo]) for cromossomo in best_overall_route]
         castedRoute.append(castedRoute[0])
-
-        print(castedRoute)
         
         return castedRoute, best_overall_distance
         
@@ -158,7 +155,7 @@ def get_algoritmo_genetico() -> AlgoritmoGenetico:
     service.adicionar_metrica(TempoExecucao())
     service.adicionar_metrica(SequenciaExecucao())
     service.adicionar_metrica(Distancia())
-    service.adicionar_metrica(MetricaPreco(tipo_recurso='cpu')) # <--- NOVO
+    service.adicionar_metrica(MetricaPreco(tipo_recurso='cpu', provider='aws')) # <--- NOVO
     service.adicionar_metrica(UsoMemoria())             # <--- NOVO
     # service.adicionar_metrica(ConvergenciaDistancia())  # <--- NOVO
     return service

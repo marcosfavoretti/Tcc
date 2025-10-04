@@ -1,16 +1,15 @@
 from pydantic import BaseModel, Field
 from typing import List, Dict
-from core.enum.tipos_algoritmos import TipoAlgoritmo
 class PontoDTO(BaseModel):
     latitude: float = Field(..., description="Latitude do ponto")
     longitude: float = Field(..., description="Longitude do ponto")
     name: str = Field(..., description="Nome do ponto")
 
 class AlgoritmosDto(BaseModel):
-    algoritmo: TipoAlgoritmo = Field(
+    algoritmo: str = Field(
         ...,
         description='Alias do algoritmo que sera utilizado',
-        examples=['FORCA_BRUTA']
+        examples=['FORÇA BRUTA']
     )
     ponto_inicial: PontoDTO = Field(
         ...,

@@ -240,5 +240,31 @@ class PoiDAO:
         print(f"POI criado e conectado no ponto mais próximo da rua: {closest['name'] or 'desconhecida'}")
         return poi_node
         
+    def get_all_pois(self) -> Optional[List[Dict[str, Union[str, float]]]]:
+        query = """
+        MATCH (poi:POI)
+        WITH poi.name AS name, collect(poi)[0] AS anyPoi
+        RETURN name, anyPoi.osmid AS osmid, anyPoi.latitude AS latitude, anyPoi.longitude AS longitude
+        """
+        try:
+            result = self.driver.run(query).data()
+            if not result:
+                print("Nenhum POI encontrado.")
+                return []
+            
+            pois = []
+            for record in result:
+                pois.append({
+                    "osmid": record['osmid'],
+                    "name": record['name'],
+                    "latitude": record['latitude'],
+                    "longitude": record['longitude']
+                })
+            return pois
+
+        except Exception as e:
+            print(f"Erro ao buscar POIs: {str(e)}")
+            return None
+
 def get_poi_dao() -> PoiDAO:
     return PoiDAO()

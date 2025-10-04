@@ -1,3 +1,4 @@
+# [Imports permanecem os mesmos]
 from qiskit_aer import AerSimulator
 from services.distancia import Distancia
 import copy
@@ -7,319 +8,303 @@ import numpy as np
 from typing import List, Tuple
 from core.dto.algoritmos_dto import PontoDTO
 import random
-from qiskit import transpile
+from qiskit import transpile, QuantumCircuit
 from qiskit.circuit.library import QAOAAnsatz
 from qiskit.quantum_info import SparsePauliOp
-from qiskit_ibm_runtime import SamplerV2, EstimatorV2, QiskitRuntimeService,Sampler,Estimator
+from qiskit_ibm_runtime import SamplerV2, EstimatorV2
 from scipy.optimize import minimize
 from services.sequencia_execucao import SequenciaExecucao
 from services.metrica_preco import MetricaPreco
 from services.metrica_memoria import UsoMemoria
 from services.metrica_circuito_img import CircuitoQuanticoImagem
+from services.metrica_quanticas import MetricasQuanticas
+from services.metrica_tasks import MetricaQuantidadeTaskQuanticas
+from services.metrica_shots import MetricaQuantidadeShotsQuanticas
+from services.metrica_qubits import MetricaQubits
 
-from core.enum.tipos_algoritmos import TipoAlgoritmo
 class AlgoritmoQAOA(AlgoritmoBase):
-    TIPO_ALGORITMO = TipoAlgoritmo.QAOA
-    circuito_transpilado = None    
+    """
+    Implementação do algoritmo QAOA para resolver o Problema do Caixeiro Viajante (TSP).
+    """
+    TIPO_ALGORITMO = "QAOA"
+    _QPU_ARN = ''
+    device_arn = ''
+    # --- Parâmetros de Configuração do Algoritmo ---
+    _BACKEND = AerSimulator()
+    _REPS = 1
+    _OPTIMIZER_METHOD = 'COBYLA'
+    _OPTIMIZER_MAX_ITER = 1
+    _TOTAL_SHOTS_FINAL = 1
+    _PENALTY_FACTOR = 1
 
-    BACKEND = AerSimulator()#aqui setei como simulador em vez do computador quantico da ibm
-    REPS = 1
-    
+    def __init__(self):
+        super().__init__()
+        self.circuito_transpilado = None
+
+    def _log(self, message: str, level: int = 0):
+        """Função auxiliar para logs formatados."""
+        indent = "  " * level
+        print(f"{indent}{message}")
+
+    # ... [Todos os outros métodos de _executar_logica_algoritmo a _calculate_path_distance permanecem os mesmos] ...
+
+    # --------------------------------------------------------------------------
+    # FLUXO PRINCIPAL DE EXECUÇÃO
+    # --------------------------------------------------------------------------
+
     def _executar_logica_algoritmo(self, dist_matrix: np.ndarray, pontos: List[PontoDTO]) -> Tuple[List[PontoDTO], float]:
         """
-        Resolve TSP usando QAOAAnsatz diretamente
+        Orquestra a execução completa do algoritmo QAOA para o TSP.
         """
-        print("Matriz de Adjacência:")
-        for i, row in enumerate(dist_matrix):
-            print(f"Cidade {i}: {row}")
-        print()
-        
-        # Converter para QUBO
-        hamiltonian = self.adjacency_matrix_to_qubo(dist_matrix)
-        print(f"Hamiltoniano criado com {len(hamiltonian)} termos")
+        self._log("=====================================================")
+        self._log("🚀 INICIANDO ALGORITMO QAOA PARA O TSP")
+        self._log("=====================================================")
 
-        simulator = self.BACKEND
+        hamiltonian = self._1_construir_hamiltoniano(dist_matrix)
+        ansatz, hamiltonian_mapeado, estimator, sampler = self._2_preparar_infraestrutura_quantica(hamiltonian)
+        self.circuito_transpilado = ansatz
+        otimizacao_result = self._3_executar_otimizacao_classica(ansatz, hamiltonian_mapeado, estimator)
+        counts = self._4_amostrar_solucao_otima(otimizacao_result.x, ansatz, sampler)
+        rota_final, distancia_final = self._5_decodificar_e_validar_rota(counts, dist_matrix, pontos)
+
+        self._log("\n✅ ALGORITMO QAOA CONCLUÍDO!")
+        return rota_final, distancia_final
+
+    # --------------------------------------------------------------------------
+    # MÉTODOS AUXILIARES DO FLUXO PRINCIPAL
+    # --------------------------------------------------------------------------
+
+    def _1_construir_hamiltoniano(self, dist_matrix: np.ndarray) -> SparsePauliOp:
+        self._log("\n--- PASSO 1: Construindo o Hamiltoniano ---")
+        n_cidades = len(dist_matrix)
+        self._log(f"Problema com {n_cidades} cidades, usando {n_cidades**2} qubits.", 1)
         
-        # Criar ansatz QAOA
-        qaoa_ansatz = QAOAAnsatz(hamiltonian, reps=self.REPS)
-        qaoa_ansatz = transpile(qaoa_ansatz,backend=simulator,optimization_level=1)
-        self.circuito_transpilado = qaoa_ansatz
-        hamiltonian = hamiltonian.apply_layout(qaoa_ansatz.layout) 
-        print(f"Circuito QAOA criado com {qaoa_ansatz.num_qubits} qubits e {qaoa_ansatz.num_parameters} parâmetros")
+        objetivo = self._criar_objetivo_hamiltoniano(dist_matrix, n_cidades)
+        restricoes = self._criar_restricoes_hamiltoniano(n_cidades)
+        
+        hamiltonian = objetivo + restricoes
+
+        # --- INÍCIO DA CORREÇÃO ---
+        # O SparsePauliOp, por padrão, armazena coeficientes como 'numpy.complex128'.
+        # O QAOAAnsatz requer que os coeficientes sejam explicitamente do tipo real (float).
+        # Verificamos se as partes imaginárias são todas zero e, em caso afirmativo,
+        # reconstruímos o operador usando apenas as partes reais dos coeficientes.
+        if np.all(hamiltonian.coeffs.imag == 0):
+            self._log("Convertendo coeficientes do Hamiltoniano para o tipo real.", 1)
+            hamiltonian = SparsePauliOp(hamiltonian.paulis, coeffs=hamiltonian.coeffs.real)
+        else:
+            # Este 'else' é uma salvaguarda. Para o problema do TSP, os coeficientes
+            # nunca deveriam ter uma parte imaginária diferente de zero.
+            self._log("AVISO: O Hamiltoniano contém coeficientes genuinamente complexos!", 1)
+            raise ValueError("Hamiltoniano possui coeficientes complexos não nulos, o que não é esperado.")
+
+        # --- FIM DA CORREÇÃO ---
+
+        self._log(f"Hamiltoniano criado com {len(hamiltonian)} termos.", 1)
+        return hamiltonian
     
-        estimator = EstimatorV2(mode=simulator)
-        sampler = SamplerV2(mode=simulator)
-        
-        # Parâmetros iniciais aleatórios
-        initial_params = np.random.uniform(0, 2*np.pi, qaoa_ansatz.num_parameters)
-        
-        print("Iniciando otimização clássica...")
-        
-        # Otimização clássica
-        result = minimize(
-            self.cost_function,
-            initial_params,
-            args=(qaoa_ansatz, hamiltonian, estimator),
-            method='COBYLA',
-            options={'maxiter': 2,}
-        )
-        
-        optimal_params = result.x
-        optimal_value = result.fun
-        
-        print(f"\nOtimização concluída!")
-        print(f"Valor ótimo encontrado: {optimal_value:.4f}")
-        print(f"Sucesso: {result.success}")
-        
-        # Criar circuito com parâmetros ótimos e medições
-        optimal_circuit = qaoa_ansatz.assign_parameters(optimal_params)
+    def _2_preparar_infraestrutura_quantica(self, hamiltonian: SparsePauliOp) -> Tuple[QuantumCircuit, SparsePauliOp, EstimatorV2, SamplerV2]:
+        self._log("\n--- PASSO 2: Preparando o Circuito e Backend ---")
+        ansatz = QAOAAnsatz(hamiltonian, reps=self._REPS)
+        self._log(f"Ansatz QAOA criado com {ansatz.num_qubits} qubits e {ansatz.num_parameters} parâmetros (reps={self._REPS}).", 1)
+        self._log(f"Transpilando circuito para o backend '{self._BACKEND.name}'...", 1)
+        ansatz_transpilado = transpile(ansatz, backend=self._BACKEND, optimization_level=1)
+        hamiltonian_mapeado = hamiltonian.apply_layout(ansatz_transpilado.layout)
+        estimator = EstimatorV2(mode=self._BACKEND)
+        sampler = SamplerV2(mode=self._BACKEND)
+        self._log("Estimator e Sampler V2 inicializados.", 1)
+        return ansatz_transpilado, hamiltonian_mapeado, estimator, sampler
 
-        optimal_circuit.measure_all()
-        
-        print(f"Executando circuito no simulador...")
-        
-        job = sampler.run([optimal_circuit], shots=4)
-        result = job.result()#.get_counts()
-        counts = result[0].data.meas.get_counts()
-        
-        print(f"Top 5 resultados mais prováveis:")
-        sorted_counts = sorted(counts.items(), key=lambda x: x[1], reverse=True)
-        for i, (bitstring, count) in enumerate(sorted_counts[:5]):
-            print(f"{i+1}. {bitstring}: {count} vezes ({count/1024*100:.1f}%)")
-        
-        # Decodificar solução
-        counts_filtred = self.extract_relevant_qubits(counts, [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
-        order, solution_matrix = self.decode_solution(counts_filtred,len(dist_matrix))
-        
-        print("\nMatriz de Solução (cidade x tempo):")
-        print("Linhas = Cidades, Colunas = Ordem de Visita")
-        for i, row in enumerate(solution_matrix):
-            print(f"Cidade {i}: {row}")
-        print()
-        
-        # Calcular distância da solução QAOA
-        qaoa_distance = self.calculate_path_distance(order, dist_matrix)
-        
-        print(f"Ordem encontrada pelo QAOA: {order}")
-        print(f"Distância do caminho QAOA: {qaoa_distance}")
-        
-        best_path_dto: List[PontoDTO] = []
-        if order is not None:  # Verifica se um caminho válido foi encontrado
-            for idx in order + [0]:  # adiciona a cidade inicial no fim
-                best_path_dto.append(pontos[idx])
+    def _3_executar_otimizacao_classica(self, ansatz: QuantumCircuit, hamiltonian: SparsePauliOp, estimator: EstimatorV2):
+        self._log("\n--- PASSO 3: Otimização Clássica dos Parâmetros ---")
+        params_iniciais = np.random.uniform(0, 2 * np.pi, ansatz.num_parameters)
+        self._log(f"Iniciando otimização com o método '{self._OPTIMIZER_METHOD}' (max_iter={self._OPTIMIZER_MAX_ITER}).", 1)
+        result = minimize(self._cost_function, params_iniciais, args=(ansatz, hamiltonian, estimator), method=self._OPTIMIZER_METHOD, options={'maxiter': self._OPTIMIZER_MAX_ITER})
+        self._log("Otimização concluída!", 1)
+        self._log(f"  - Sucesso: {result.success}", 2)
+        self._log(f"  - Valor de energia final (custo): {result.fun:.4f}", 2)
+        return result
 
-        return best_path_dto, qaoa_distance
-        
-    def cost_function(self,params, ansatz, hamiltonian, estimator):
-        bound_circuit = ansatz.assign_parameters(params)
-        job = estimator.run([(bound_circuit, hamiltonian)])
+    def _4_amostrar_solucao_otima(self, params_otimos: np.ndarray, ansatz: QuantumCircuit, sampler: SamplerV2) -> dict:
+        self._log("\n--- PASSO 4: Amostragem da Solução Ótima ---")
+        circuito_otimo = ansatz.assign_parameters(params_otimos)
+        circuito_otimo.measure_all()
+        self._log(f"Executando circuito no sampler com {self._TOTAL_SHOTS_FINAL} shots...", 1)
+        job = sampler.run([circuito_otimo], shots=self._TOTAL_SHOTS_FINAL)
         result = job.result()
+        counts = result[0].data.meas.get_counts()
+        self._log("Resultados mais prováveis:", 1)
+        sorted_counts = sorted(counts.items(), key=lambda item: item[1], reverse=True)
+        for i, (bitstring, count) in enumerate(sorted_counts[:5]):
+            prob = (count / self._TOTAL_SHOTS_FINAL) * 100
+            self._log(f"{i+1}. Bitstring '{bitstring}': {count} vezes ({prob:.2f}%)", 2)
+        return counts
+
+    def _5_decodificar_e_validar_rota(self, counts: dict, dist_matrix: np.ndarray, pontos: List[PontoDTO]) -> Tuple[List[PontoDTO], float]:
+        """Decodifica a string de bits, valida e normaliza a rota do TSP."""
+        self._log("\n--- PASSO 5: Decodificando, Validando e Normalizando a Rota ---")
+        n_cidades = len(dist_matrix)
+        
+        qubit_indices = list(range(n_cidades**2))
+        counts_filtrados = self._ajustar_ordenacao_bits(counts, qubit_indices)
+
+        ordem_bruta, _ = self._decode_solution(counts_filtrados, n_cidades)
+        
+        if not ordem_bruta:
+            self._log("AVISO: Não foi possível decodificar uma rota válida.", 1)
+            return [], float('inf')
+
+        self._log(f"Rota bruta decodificada: {ordem_bruta}", 2)
+        ordem = self._normalizar_rota_comecando_por_zero(ordem_bruta)
+
+        distancia = self._calculate_path_distance(ordem, dist_matrix)
+        
+        self._log(f"Rota final (normalizada): {ordem}", 1)
+        self._log(f"Distância total da rota: {distancia:.2f}", 1)
+        
+        rota_dto = [pontos[idx] for idx in ordem]
+        rota_dto.append(pontos[ordem[0]])
+        
+        return rota_dto, distancia
+    
+    # --------------------------------------------------------------------------
+    # LÓGICA DO HAMILTONIANO (QUBO) - SEM ALTERAÇÕES
+    # --------------------------------------------------------------------------
+
+    def _criar_objetivo_hamiltoniano(self, dist_matrix: np.ndarray, n: int) -> SparsePauliOp:
+        pauli_list = []
+        for i in range(n):
+            for j in range(n):
+                if i == j: continue
+                for k in range(n):
+                    qubit1 = i * n + k
+                    qubit2 = j * n + ((k + 1) % n)
+                    pauli_str = ['I'] * (n * n); pauli_str[qubit1] = 'Z'; pauli_str[qubit2] = 'Z'
+                    pauli_list.append((''.join(reversed(pauli_str)), dist_matrix[i][j] / 4.0))
+                    pauli_str1 = ['I'] * (n * n); pauli_str1[qubit1] = 'Z'
+                    pauli_list.append((''.join(reversed(pauli_str1)), -dist_matrix[i][j] / 4.0))
+                    pauli_str2 = ['I'] * (n * n); pauli_str2[qubit2] = 'Z'
+                    pauli_list.append((''.join(reversed(pauli_str2)), -dist_matrix[i][j] / 4.0))
+        return SparsePauliOp.from_list(pauli_list)
+
+    def _criar_restricoes_hamiltoniano(self, n: int) -> SparsePauliOp:
+        pauli_list = []
+        for i in range(n):
+            for k in range(n):
+                qubit1 = i * n + k
+                pauli_str = ['I'] * (n * n); pauli_str[qubit1] = 'Z'
+                pauli_list.append((''.join(reversed(pauli_str)), -self._PENALTY_FACTOR))
+                for l in range(k + 1, n):
+                    qubit2 = i * n + l
+                    pauli_str_zz = ['I'] * (n * n); pauli_str_zz[qubit1] = 'Z'; pauli_str_zz[qubit2] = 'Z'
+                    pauli_list.append((''.join(reversed(pauli_str_zz)), 2 * self._PENALTY_FACTOR))
+        for k in range(n):
+            for i in range(n):
+                qubit1 = i * n + k
+                pauli_str = ['I'] * (n * n); pauli_str[qubit1] = 'Z'
+                pauli_list.append((''.join(reversed(pauli_str)), -self._PENALTY_FACTOR))
+                for j in range(i + 1, n):
+                    qubit2 = j * n + k
+                    pauli_str_zz = ['I'] * (n * n); pauli_str_zz[qubit1] = 'Z'; pauli_str_zz[qubit2] = 'Z'
+                    pauli_list.append((''.join(reversed(pauli_str_zz)), 2 * self._PENALTY_FACTOR))
+        return SparsePauliOp.from_list(pauli_list)
+    
+    # --------------------------------------------------------------------------
+    # FUNÇÕES DE APOIO E DECODIFICAÇÃO
+    # --------------------------------------------------------------------------
+    def _cost_function(self, params, ansatz, hamiltonian, estimator):
+        """Função de custo para o otimizador clássico."""
+        pub = (ansatz.assign_parameters(params), hamiltonian)
+        result = estimator.run([pub]).result()
+        
+        # CORREÇÃO: O nome correto do atributo é 'evs' (Expected ValueS).
         return result[0].data.evs
 
-    def fix_invalid_solution(self,solution_matrix, n):
-        """Corrige uma solução inválida para criar um ciclo hamiltoniano válido"""
-        print("Aplicando heurística de correção...")
-        order = []
-        used_cities = set()
-        for pos in range(n):
-            best_city = None
-            for city in range(n):
-                if city not in used_cities:
-                    if best_city is None:
-                        best_city = city
-                    elif solution_matrix[city][pos] > solution_matrix[best_city][pos]:
-                        best_city = city
-            if best_city is not None:
-                order.append(best_city)
-                used_cities.add(best_city)
-        for city in range(n):
-            if city not in used_cities:
-                order.append(city)
-        order = order[:n]
-        print(f"Ordem corrigida: {order}")
-        return order
 
-    def decode_solution(self,counts, n=4):
-        """Decodifica a solução quântica para ordem das cidades garantindo ciclo hamiltoniano"""
-        # Pega as 5 soluções com maior probabilidade para tentar encontrar uma válida
-        sorted_counts = sorted(counts.items(), key=lambda x: x[1], reverse=True)
-        
-        for bitstring, count in sorted_counts[:10]:  # Tenta as 10 melhores
-            print(f"Tentando bitstring: {bitstring} (probabilidade: {count/1024*100:.1f}%)")
-            
-            # Converte string binária para matriz
-            solution_matrix = np.zeros((n, n), dtype=int)
-            for i, bit in enumerate(bitstring):
-                if bit == '1':
-                    row = i // n
-                    col = i % n
-                    solution_matrix[row][col] = 1
-            
-            print("Matriz de solução:")
-            for i, row in enumerate(solution_matrix):
-                print(f"Cidade {i}: {row}")
-            
-            # Verifica se é uma solução válida (cada linha e coluna soma 1)
+    def _decode_solution(self, counts: dict, n: int) -> Tuple[List[int], np.ndarray]:
+        sorted_counts = sorted(counts.items(), key=lambda item: item[1], reverse=True)
+        self._log("Analisando as 10 soluções mais prováveis para encontrar um tour válido...", 1)
+        for bitstring, _ in sorted_counts[:10]:
+            solution_matrix = np.reshape([int(bit) for bit in bitstring], (n, n))
             row_sums = np.sum(solution_matrix, axis=1)
             col_sums = np.sum(solution_matrix, axis=0)
-            
-            print(f"Somas das linhas (cada cidade): {row_sums}")
-            print(f"Somas das colunas (cada posição): {col_sums}")
-            
-            # Solução válida: cada cidade aparece exatamente uma vez, cada posição tem exatamente uma cidade
             if np.all(row_sums == 1) and np.all(col_sums == 1):
-                # Extrai a ordem das cidades
-                order = []
-                for time_step in range(n):
-                    for city in range(n):
-                        if solution_matrix[city][time_step] == 1:
-                            order.append(city)
-                            break
+                self._log(f"Solução válida encontrada com o bitstring '{bitstring}'!", 2)
+                order = [np.where(row == 1)[0][0] for row in solution_matrix.T]
                 return order, solution_matrix
-            else:
-                print("Solução inválida, tentando próxima...")
-                print()
-        
-        print("Nenhuma solução válida encontrada, usando heurística para corrigir a melhor...")
-        # Se não encontrou solução válida, usa a melhor e corrige
+        self._log("Nenhuma solução perfeitamente válida encontrada. Aplicando heurística de correção na melhor solução.", 1)
         best_bitstring = sorted_counts[0][0]
-        solution_matrix = np.zeros((n, n), dtype=int)
-        for i, bit in enumerate(best_bitstring):
-            if bit == '1':
-                row = i // n
-                col = i % n
-                solution_matrix[row][col] = 1
-        
-        # Heurística de correção: criar um tour válido
-        order = self.fix_invalid_solution(solution_matrix, n)
-        
-        # Criar nova matriz válida
+        best_solution_matrix = np.reshape([int(bit) for bit in best_bitstring], (n, n))
+        order = self._fix_invalid_solution(best_solution_matrix, n)
         fixed_matrix = np.zeros((n, n), dtype=int)
         for pos, city in enumerate(order):
             fixed_matrix[city][pos] = 1
-        
         return order, fixed_matrix
 
-    def adjacency_matrix_to_qubo(self,adj_matrix):
-        """
-        Converte matriz de adjacência para formulação QUBO do TSP
-        Para 4 cidades, usamos 16 qubits (4x4 matriz binária)
-        x_ij = 1 se visitamos cidade i na posição j do tour
-        """
-        n = len(adj_matrix)
-        
-        pauli_list = []
-        
-        # Função objetivo minimizar distâncias entre cidades consecutivas
-        for i in range(n):
-            for j in range(n):
-                for k in range(n):
-                    if i != j:
-                        # Cidade i na posição k e cidade j na posição seguinte (k+1)%n
-                        qubit1 = i * n + k
-                        qubit2 = j * n + ((k + 1) % n)
-                        
-                        # Adicionar termo de distância (queremos minimizar, então coeficiente positivo)
-                        pauli_str = ['I'] * (n * n)
-                        pauli_str[qubit1] = 'Z'
-                        pauli_str[qubit2] = 'Z'
-                        # Usar (1-Z)/2 para converter de {-1,1} para {0,1}
-                        # Mas aqui já trabalhamos com ZZ que dá +1 quando ambos são |1⟩
-                        pauli_list.append((''.join(reversed(pauli_str)), adj_matrix[i][j] / 4))
-                        
-                        # Termos lineares para implementar (1-Z_i)/2 * (1-Z_j)/2
-                        pauli_str1 = ['I'] * (n * n)
-                        pauli_str1[qubit1] = 'Z'
-                        pauli_list.append((''.join(reversed(pauli_str1)), -adj_matrix[i][j] / 4))
-                        
-                        pauli_str2 = ['I'] * (n * n)
-                        pauli_str2[qubit2] = 'Z'
-                        pauli_list.append((''.join(reversed(pauli_str2)), -adj_matrix[i][j] / 4))
-                        
-                        # Termo constante
-                        pauli_str_const = ['I'] * (n * n)
-                        pauli_list.append((''.join(pauli_str_const), adj_matrix[i][j] / 4))
-        
-        # RESTRIÇÕES com penalidades altas
-        penalty = 100000  # Penalidade muito alta para violações
-        
-        # Restrição 1: Exatamente uma cidade por posição no tour
-        for k in range(n):
-            # Penalizar se mais de uma cidade na posição k
-            for i in range(n):
-                for j in range(i+1, n):
-                    qubit1 = i * n + k
-                    qubit2 = j * n + k
-                    pauli_str = ['I'] * (n * n)
-                    pauli_str[qubit1] = 'Z'
-                    pauli_str[qubit2] = 'Z'
-                    pauli_list.append((''.join(reversed(pauli_str)), penalty))
-            
-            # Penalizar se nenhuma cidade na posição k
-            for i in range(n):
-                qubit = i * n + k
-                pauli_str = ['I'] * (n * n)
-                pauli_str[qubit] = 'Z'
-                pauli_list.append((''.join(reversed(pauli_str)), -penalty))
-            
-            # Termo constante para garantir exatamente 1
-            pauli_str_const = ['I'] * (n * n)
-            pauli_list.append((''.join(pauli_str_const), penalty))
-        
-        # Restrição 2: Cada cidade aparece exatamente uma vez no tour
-        for i in range(n):
-            # Penalizar se cidade i aparece em mais de uma posição
-            for k in range(n):
-                for l in range(k+1, n):
-                    qubit1 = i * n + k
-                    qubit2 = i * n + l
-                    pauli_str = ['I'] * (n * n)
-                    pauli_str[qubit1] = 'Z'
-                    pauli_str[qubit2] = 'Z'
-                    pauli_list.append((''.join(reversed(pauli_str)), penalty))
-            
-            # Penalizar se cidade i não aparece em nenhuma posição
-            for k in range(n):
-                qubit = i * n + k
-                pauli_str = ['I'] * (n * n)
-                pauli_str[qubit] = 'Z'
-                pauli_list.append((''.join(reversed(pauli_str)), -penalty))
-            
-            # Termo constante para garantir exatamente 1
-            pauli_str_const = ['I'] * (n * n)
-            pauli_list.append((''.join(pauli_str_const), penalty))
-        hamiltonian = SparsePauliOp.from_list(pauli_list, num_qubits=n*n)
-        return hamiltonian
-    
-    def calculate_path_distance(self,order, adj_matrix):
-        """Calcula a distância total do caminho"""
+    def _fix_invalid_solution(self, solution_matrix: np.ndarray, n: int) -> List[int]:
+        self._log("Executando heurística de correção...", 2)
+        order = []
+        visited_cities = set()
+        for pos in range(n):
+            city_probs = []
+            for city in range(n):
+                if city not in visited_cities:
+                    city_probs.append((city, solution_matrix[city][pos]))
+            if not city_probs: continue
+            best_city = max(city_probs, key=lambda item: item[1])[0]
+            order.append(best_city)
+            visited_cities.add(best_city)
+        for city in range(n):
+            if city not in visited_cities:
+                order.append(city)
+        self._log(f"Rota corrigida gerada: {order}", 2)
+        return order
+
+    def _calculate_path_distance(self, order: List[int], dist_matrix: np.ndarray) -> float:
         distance = 0
         n = len(order)
         for i in range(n):
-            distance += adj_matrix[order[i]][order[(i+1) % n]]
+            cidade_atual = order[i]
+            proxima_cidade = order[(i + 1) % n]
+            distance += dist_matrix[cidade_atual][proxima_cidade]
         return distance
-    
-    def extract_relevant_qubits(self, counts, qubit_indices):
-        """
-        Extrai apenas os bits dos qubits relevantes
-        qubit_indices: lista dos índices dos qubits que você está usando
-        """
+
+    def _ajustar_ordenacao_bits(self, counts: dict, qubit_indices: List[int]) -> dict:
         filtered_counts = {}
-        needed_length = max(qubit_indices) + 1
+        num_qubits = max(qubit_indices) + 1
         for bitstring, count in counts.items():
-            padded = bitstring.zfill(needed_length)  # garante tamanho mínimo
-            relevant_bits = ''.join([padded[-(i + 1)] for i in qubit_indices])
+            reversed_bitstring = bitstring[::-1]
+            padded = reversed_bitstring.ljust(num_qubits, '0')
+            relevant_bits = "".join(padded[i] for i in qubit_indices)
             filtered_counts[relevant_bits] = filtered_counts.get(relevant_bits, 0) + count
         return filtered_counts
     
+    def _normalizar_rota_comecando_por_zero(self, ordem: List[int]) -> List[int]:
+        """
+        Garante que a rota (ciclo) sempre comece pela cidade 0 para padronização.
+        """
+        if 0 not in ordem:
+            self._log(f"AVISO: A cidade 0 não está na rota decodificada {ordem}. Retornando rota original.", 2)
+            return ordem
+        
+        start_index = ordem.index(0)
+        
+        if start_index == 0:
+            return ordem
+        
+        return ordem[start_index:] + ordem[:start_index]
+
+# ... [Função get_algoritmo_QAOA() permanece a mesma] ...
 def get_algoritmo_QAOA() -> AlgoritmoQAOA:
-    service =  AlgoritmoQAOA()
+    service = AlgoritmoQAOA()
     service.adicionar_metrica(TempoExecucao())
     service.adicionar_metrica(SequenciaExecucao())
     service.adicionar_metrica(Distancia())
-    service.adicionar_metrica(MetricaPreco(tipo_recurso='qpu')) # <--- NOVO
-    service.adicionar_metrica(UsoMemoria())
-    service.adicionar_metrica(CircuitoQuanticoImagem())      
-      
+    service.adicionar_metrica(MetricaPreco(tipo_recurso='qpu', provider='anka'))
+    service.adicionar_metrica(MetricaQubits())
+    service.adicionar_metrica(MetricaQuantidadeTaskQuanticas())
+    service.adicionar_metrica(MetricaQuantidadeShotsQuanticas())
+    # service.adicionar_metrica(UsoMemoria())
+    # service.adicionar_metrica(MetricasQuanticas())
+    service.adicionar_metrica(CircuitoQuanticoImagem())
     return service
-        

@@ -3,21 +3,22 @@ from typing import List, Tuple, Any, Dict
 from core.abstract.metricas_base import MetricasBase
 import numpy as np
 from core.dto.algoritmos_dto import PontoDTO
-from core.enum.tipos_algoritmos import TipoAlgoritmo
+from core.dto.algoritmos_response_dto import MetricaDto
+from concurrent.futures import ThreadPoolExecutor # <-- 1. IMPORTE O EXECUTOR DE THREADS
 class AlgoritmoBase(ABC):
     def __init__(self):
         self._metricas: List[MetricasBase]  = [] # Lista para as métricas
 
     @property
     @abstractmethod
-    def TIPO_ALGORITMO(self) -> TipoAlgoritmo: # <-- Adicionar propriedade abstrata
+    def TIPO_ALGORITMO(self) -> str: # <-- Adicionar propriedade abstrata
         """Define o tipo de algoritmo que a classe representa."""
         pass
 
     def adicionar_metrica(self, metrica: MetricasBase):
         self._metricas.append(metrica)
 
-    def executar(self, dist_matrix: np.ndarray, pontos: List[PontoDTO]) ->Tuple[Any, Dict[str, Any]]:
+    def executar(self, dist_matrix: np.ndarray, pontos: List[PontoDTO]) ->Tuple[Any, Dict[str, Any], List[MetricaDto]]:
         print(f"Iniciando execução do algoritmo: {self.__class__.__name__}")
 
         self._notificar_inicio_execucao()
@@ -28,11 +29,19 @@ class AlgoritmoBase(ABC):
 
         print(f"Finalizando execução do algoritmo: {self.__class__.__name__}")
         
-        resultado_das_metricas: Dict[str, Any] = {}
-        for metrica in self._metricas:
-                resultado_das_metricas[metrica.__class__.__name__] = metrica.resultadoFinal()
-                
-        print(resultado_das_metricas)
+        resultado_das_metricas: List[MetricaDto] = []
+        
+        def processa_metricas_sequencialmente():
+            for metrica in self._metricas:
+                resultado = metrica.resultadoFinal()
+                resultado_das_metricas.append(resultado)
+
+        with ThreadPoolExecutor() as executor:
+            # 'submit' agenda a função para ser executada e retorna um objeto 'Future'
+            future = executor.submit(processa_metricas_sequencialmente)
+            # Você espera a função terminar e pode obter o resultado (neste caso, None)
+            future.result() 
+
         return melhorCaminho, distancia, resultado_das_metricas
 
     @abstractmethod

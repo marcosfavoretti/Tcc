@@ -8,6 +8,9 @@ class POIService:
     def __init__(self, dao: PoiDAO = Depends(get_poi_dao)):
         self.DAO = dao
     
+    def get_all_pois(self):
+        return self.DAO.get_all_pois()
+
     def menorCaminhoEntre(self, poiId1: str, poiId2: str)-> MenorCaminhoResultado:
         result = self.DAO.shortPathByPOI(poiId1, poiId2)
         return result            
