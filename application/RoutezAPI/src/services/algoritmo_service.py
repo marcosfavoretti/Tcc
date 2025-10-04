@@ -7,6 +7,8 @@ from infra.poi_dao import PoiDAO, get_poi_dao
 from typing import List
 from services.fabrica_algoritmos_service import FabricaAlgoritmosService
 from core.dto.algoritmos_response_dto import AlgoritmosResponseDto
+from services.worker_service import execute_algorithm_in_worker
+
 class AlgoritmoService:
     
     def __init__(self, poiDao: PoiDAO, matrixService: DistanceMatixService):
@@ -41,7 +43,7 @@ class AlgoritmoService:
             pois_salvos[1:]       
         )
         
-        best_path, min_distance, resultadoDasMetricas = algoritmo.executar(dist_matrix_np, pois_salvos)
+        best_path, min_distance, resultadoDasMetricas = execute_algorithm_in_worker(algoritmo, dist_matrix_np, pois_salvos)
         
         point_index = {p['osmid']: i for i, p in enumerate(pois_salvos)}
 
