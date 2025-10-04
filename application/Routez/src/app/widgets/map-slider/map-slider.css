@@ -9,7 +9,7 @@
   resize: both; /* Permite redimensionar */
   overflow: auto; /* Adiciona rolagem se o conteúdo for maior */
   width: 320px; /* Largura inicial */
-  max-height: 500px; /* Altura máxima */
+  max-height: 1000px; /* Altura máxima */
   min-width: 200px; /* Largura mínima ao redimensionar */
   min-height: 150px; /* Altura mínima ao redimensionar */
 

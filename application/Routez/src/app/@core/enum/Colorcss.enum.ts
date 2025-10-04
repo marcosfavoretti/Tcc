@@ -6,8 +6,6 @@ export enum ColorCSS {
     CYAN = '#00FFFF',
     MAGENTA = '#FF00FF',
     GRAY = '#808080',
-    LIGHTGRAY = '#D3D3D3',
-    DARKGRAY = '#A9A9A9',
     ORANGE = '#FFA500',
     PINK = '#FFC0CB',
     PURPLE = '#800080',

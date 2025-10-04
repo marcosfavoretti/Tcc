@@ -1,20 +1,14 @@
 /* Painel de métricas totalmente transparente */
 .metricas-painel {
+  /* Remove todos os estilos de painel */
+  
   background-color: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   border: none;
   box-shadow: none;
   padding: 1rem;
-  color: white;
-
-  /* Adicionado para permitir resize vertical */
-  resize: both;
-  overflow: auto;
-
-  /* (Opcional) Define altura mínima e máxima */
-  min-height: 150px;
-  max-height: 1000px;
+  color: white; /* Cor do texto */
 }
 
 /* Garante que os itens da lista também não tenham fundo */
