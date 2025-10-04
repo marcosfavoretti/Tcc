@@ -7,6 +7,8 @@ export const tipoAlgoritmoEnum = {
   FORCA_BRUTA: 'FORCA_BRUTA',
   QAOA: 'QAOA',
   GENETICO: 'GENETICO',
+  QAOA_REAL: 'QAOA_REAL',
+  SIMULATE_ANNEALING: 'SIMULATE_ANNEALING',
 } as const
 
 export type TipoAlgoritmoEnum = (typeof tipoAlgoritmoEnum)[keyof typeof tipoAlgoritmoEnum]

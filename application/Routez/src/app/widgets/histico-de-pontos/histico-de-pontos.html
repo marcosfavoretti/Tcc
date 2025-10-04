@@ -1,8 +1,8 @@
 <ul class="list-group historico-list">
-    @if (!loadHistorico().length) {
+    @if (!pontos.length) {
         <span class="text-primary">não foi adicionado ainda nenhum ponto!</span>
     }
-    @for (item of loadHistorico(); track $index) {
+    @for (item of pontos; track $index) {
         <li class="list-group-item">
             <button (click)="onPontoSelecionado.emit(item)" class="btn btn-group w-100">
                 <app-item-list 

@@ -1,19 +1,18 @@
 import { Component, input } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import {ImageModule} from "primeng/image"
+import {Tooltip} from "primeng/tooltip"
+import { MetricaDto } from '../../../api';
 @Component({
   selector: 'app-metricas',
-  imports: [DialogModule, ImageModule],
+  imports: [DialogModule, ImageModule, Tooltip],
   templateUrl: './metricas.html',
   styleUrl: './metricas.css'
 })
 //isso tera que ser mudado pois se nao ira mostrar a metrica de tudo
 export class Metricas {
-  metricas = input.required<{ [k: string]: string }>();
+  metricas = input.required<MetricaDto[]>();
 
-  getMetricasEntries(): any[] {
-    return Object.entries(this.metricas());
-  }
 
   isBase64Image(value: string): boolean {
     if (typeof value !== 'string') {

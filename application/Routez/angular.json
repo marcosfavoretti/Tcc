@@ -18,6 +18,10 @@
               "zone.js",
               "@angular/localize/init"
             ],
+            "allowedCommonJsDependencies": [
+              "leaflet",
+              "leaflet-polylinedecorator"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -41,7 +45,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",

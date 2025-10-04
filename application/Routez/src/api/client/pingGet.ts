@@ -8,7 +8,7 @@ import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/cli
 import type { PingGetQueryResponse } from '../models/PingGet.ts'
 
 function getPingGetUrl() {
-  return `http://localhost:8000/` as const
+  return `http://127.0.0.1:8000/` as const
 }
 
 /**

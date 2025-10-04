@@ -3,7 +3,7 @@ import { PontoDTO } from '../../../api';
 
 @Component({
   selector: 'app-item-list',
-  imports: [],
+  standalone: true,
   templateUrl: './item-list.html',
   styleUrl: './item-list.css'
 })

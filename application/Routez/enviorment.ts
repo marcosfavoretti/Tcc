@@ -1,4 +1,4 @@
 export const enviorment = {
-    API_SWAGGER : 'http://localhost:8000/openapi.json',
-    API: 'http://localhost:8000'
+    API_SWAGGER : 'http://127.0.0.1:8000/openapi.json',
+    API: 'http://127.0.0.1:8000'
 }

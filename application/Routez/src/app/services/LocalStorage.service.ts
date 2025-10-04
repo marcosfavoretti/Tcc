@@ -19,10 +19,6 @@ export class LocalStorageService {
       }
     }
   
-    consultarPOIs():PontoDTO[]{
-      return Object.entries(localStorage).filter(item=> item[0].startsWith('POI-')).map(item=> JSON.parse(item[1]))
-    }
-
     consultarPontosInicial():PontoDTO[]{
       return Object.entries(localStorage).filter(item=> item[0].startsWith('I-')).map(item=> JSON.parse(item[1]))
     }

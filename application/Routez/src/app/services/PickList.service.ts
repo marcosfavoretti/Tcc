@@ -40,13 +40,17 @@ export class PickListService {
     }
 
     addPOIs(ponto: PontoDTO): void {
-        if (this.pois().some(poi => poi.name === ponto.name)) { alert('nao é possivel adicionar dois pontos com o mesmo nome'); return };
+        if ([this.pois(), this.pontoInicial()]
+            .flat()
+            .some(poi => poi?.name === ponto.name)) {
+            alert('nao é possivel adicionar dois pontos com o mesmo nome');
+            return;
+        };
         const pontoColorido: PontoDtoCor = {
             ...ponto,
             cor: Object.values(ColorCSS)[this._pois().length + 1]
         };
         this._pois.update(pois => [...pois, pontoColorido]);
-        this.localStorage.setItem<PontoDTO>(`POI-${ponto.name}`, ponto);
     }
 
     removePontoInicial() {
@@ -60,17 +64,14 @@ export class PickListService {
     removePOIs(ponto: PontoDtoCor): void {
         this._pois.update(pois => {
             const poisFiltrados = pois.filter(p => p.name !== ponto.name);
-            
+
             // Reatribui as cores para manter a sequência correta
             const poisRecoloridos = poisFiltrados.map((p, index) => ({
                 ...p,
                 cor: Object.values(ColorCSS)[index + 1]
             }));
-            
+
             return poisRecoloridos;
         });
-        
-        // Não se esqueça de remover também do localStorage
-        this.localStorage.removeItem(`POI-${ponto.name}`);
     }
 }

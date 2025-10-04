@@ -8,7 +8,7 @@ import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/cli
 import type { AlgoritmosDisponiveisAlgoritmosGetQueryResponse } from '../models/AlgoritmosDisponiveisAlgoritmosGet.ts'
 
 function getAlgoritmosDisponiveisAlgoritmosGetUrl() {
-  return `http://localhost:8000/algoritmos/` as const
+  return `http://127.0.0.1:8000/algoritmos/` as const
 }
 
 /**

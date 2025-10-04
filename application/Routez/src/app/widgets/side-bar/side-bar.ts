@@ -3,7 +3,7 @@ import { ListaDePontos } from "../lista-de-pontos/lista-de-pontos";
 import { RoutzAPI } from '../../services/RoutzAPI';
 import { forkJoin, Observable, tap } from 'rxjs';
 import { LoadingPopupService } from '../../services/LoadingPopup.service';
-import { AlgoritmosResponseDto, TipoAlgoritmoEnum } from '../../../api';
+import { AlgoritmosResponseDto } from '../../../api';
 import { PickListService } from '../../services/PickList.service';
 import { GerenciaAlgoritmoResService } from '../../services/GerenciaAlgoritmoRes.service';
 import { AlgoritmoStoreService } from '../../services/AlgoritmoStore.service';
@@ -41,7 +41,7 @@ export class SideBar {
 
     for (const algoritmo of this.algoritmoStorage.getAlgoritmosSelecionados()) {
       const resposta$ = this.api.executaAlgoritmo({
-        algoritmo: algoritmo as TipoAlgoritmoEnum,
+        algoritmo: algoritmo,
         ponto_inicial: this.pickList.pontoInicial()!,
         pontos_interesse: this.pickList.pois(),
       });

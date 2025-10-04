@@ -12,12 +12,13 @@ export type {
   CalcularRotaAlgoritmosPostMutationResponse,
   CalcularRotaAlgoritmosPostMutation,
 } from './models/CalcularRotaAlgoritmosPost.ts'
+export type { GetAllPoisPoisGet200, GetAllPoisPoisGetQueryResponse, GetAllPoisPoisGetQuery } from './models/GetAllPoisPoisGet.ts'
 export type { HTTPValidationError } from './models/HTTPValidationError.ts'
+export type { MetricaDto } from './models/MetricaDto.ts'
 export type { PingGet200, PingGetQueryResponse, PingGetQuery } from './models/PingGet.ts'
 export type { PontoDTO } from './models/PontoDTO.ts'
-export type { TipoAlgoritmoEnum, TipoAlgoritmo } from './models/TipoAlgoritmo.ts'
 export type { ValidationError } from './models/ValidationError.ts'
 export { algoritmosDisponiveisAlgoritmosGet } from './client/algoritmosDisponiveisAlgoritmosGet'
 export { calcularRotaAlgoritmosPost } from './client/calcularRotaAlgoritmosPost'
+export { getAllPoisPoisGet } from './client/getAllPoisPoisGet'
 export { pingGet } from './client/pingGet'
-export { tipoAlgoritmoEnum } from './models/TipoAlgoritmo'

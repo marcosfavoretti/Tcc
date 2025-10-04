@@ -1,0 +1,1 @@
+{"properties":{"name":{"type":"string","title":"Name","description":"Nome da métrica"},"description":{"type":"string","title":"Description","description":"Descrição da métrica"},"result":{"type":"string","title":"Result","description":"Resultado da métrica"}},"type":"object","required":["name","description","result"],"title":"MetricaDto","x-readme-ref-name":"MetricaDto"}

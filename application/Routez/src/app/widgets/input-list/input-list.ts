@@ -4,10 +4,12 @@ import { ItemList } from "../item-list/item-list";
 import { LoadingPopupService } from '../../services/LoadingPopup.service';
 import { MapPopup } from '../map-popup/map-popup';
 import { PontoDtoCor } from '../../@core/types/PontoDtoCor';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-input-list',
-  imports: [ItemList],
+  standalone: true,
+  imports: [CommonModule, ItemList],
   templateUrl: './input-list.html',
   styleUrl: './input-list.css'
 })

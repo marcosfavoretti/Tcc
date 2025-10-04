@@ -8,7 +8,28 @@ export default defineConfig(() => ({
     input: { path: enviorment.API_SWAGGER },
     output: { path: './src/api' },
     plugins: [
-        pluginOas(),
+        pluginOas({
+            output: false,
+            validate: true,
+            docs: true,
+            override: [
+                {
+                    path: '/algoritmos',
+                    method: 'post',
+                    operationId: 'calcularRotaAlgoritmosPost',
+                },
+                {
+                    path: '/algoritmos',
+                    method: 'get',
+                    operationId: 'algoritmosDisponiveisAlgoritmosGet',
+                },
+                {
+                    path: '/pois',
+                    method: 'get',
+                    operationId: 'poisGetAllPoisGet',
+                }
+            ]
+        }),
         pluginTs({ output: { path: 'models' } }),
         pluginClient({
             output: { path: 'client' },

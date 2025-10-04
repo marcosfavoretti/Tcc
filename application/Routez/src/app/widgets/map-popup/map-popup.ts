@@ -4,13 +4,13 @@ import { PontoDTO } from '../../../api';
 import { FormsModule, NgForm } from '@angular/forms';
 import { PickListService } from '../../services/PickList.service';
 import { TabsModule } from 'primeng/tabs';
-import { HisticoDePontos } from "../histico-de-pontos/histico-de-pontos";
+import { HistoricoDePontosComponent } from "../histico-de-pontos/histico-de-pontos";
 import { StepperModule } from "primeng/stepper"
 import { Button } from "primeng/button"
 
 @Component({
   selector: 'app-map-popup',
-  imports: [Map, Button, FormsModule, TabsModule, HisticoDePontos, StepperModule],
+  imports: [Map, Button, FormsModule, TabsModule, HistoricoDePontosComponent, StepperModule],
   providers: [],
   standalone: true,
   templateUrl: './map-popup.html',

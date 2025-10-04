@@ -4,14 +4,13 @@
  */
 
 import type { PontoDTO } from './PontoDTO.ts'
-import type { TipoAlgoritmo } from './TipoAlgoritmo.ts'
 
 export type AlgoritmosDto = {
   /**
    * @description Alias do algoritmo que sera utilizado
    * @type string
    */
-  algoritmo: TipoAlgoritmo
+  algoritmo: string
   /**
    * @description Ponto de partida
    * @type object

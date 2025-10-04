@@ -1,24 +1,26 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { LocalStorageService } from '../../services/LocalStorage.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PontoDTO } from '../../../api';
-import { ItemList } from "../item-list/item-list";
+import { PoiStoreService } from '../../services/PoiStore.service';
+import { ItemList } from '../item-list/item-list';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-histico-de-pontos',
-  imports: [ItemList],
+  selector: 'app-historico-de-pontos',
+  standalone: true,
+  imports: [CommonModule, ItemList],
   templateUrl: './histico-de-pontos.html',
   styleUrl: './histico-de-pontos.css'
 })
-export class HisticoDePontos {
-  @Input() tipo!: "POI" | "INICIAL";
-  @Output() onPontoSelecionado: EventEmitter<PontoDTO> = new EventEmitter();
-  constructor(
-    private localStorageService: LocalStorageService
-  ) { }
+export class HistoricoDePontosComponent implements OnInit {
+  pontos: PontoDTO[] = [];
+  @Output() onPontoSelecionado = new EventEmitter<PontoDTO>();
 
-  loadHistorico(): PontoDTO[] {
-    return this.tipo === 'INICIAL' ?
-      this.localStorageService.consultarPontosInicial() :
-      this.localStorageService.consultarPOIs()
+  constructor(private poiStore: PoiStoreService) {}
+
+  ngOnInit(): void {
+    this.poiStore.pois$.subscribe(pois => {
+      this.pontos = pois;
+    });
+    this.poiStore.loadPOIs();
   }
 }

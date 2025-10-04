@@ -3,17 +3,27 @@
     <!-- <li class="list-group-item cabecalho-arrastavel">
       <strong>Métricas</strong>
     </li> -->
-    @for (entries of getMetricasEntries(); track $index) {
+    @for (entries of metricas(); track $index) {
     <li class="list-group-item">
-      <span><strong>{{entries[0]}}: </strong></span>
-      @if (isBase64Image(entries[1])) {
-
-      <p-image [preview]="true" width="100px" [src]="entries[1]" [appendTo]="'body'" alt="Visualização do Circuito">
-      </p-image>
-
-      } @else {
-      <span>{{ entries[1] }}</span>
-      }
+      <div class="d-flex justify-content-between">
+        <div class="d-flex flex-column">
+          <span><strong>{{entries.name}}: </strong></span>
+          @if (isBase64Image(entries.result)) {
+          <p-image
+            [preview]="true"
+            width="100px"
+            [src]="entries.result"
+            [appendTo]="'body'"
+            alt="Visualização do Circuito"
+          >
+          </p-image>
+          } @else {
+          <span>{{ entries.result }}</span>
+          }
+        </div>
+        <span [pTooltip]="entries.description"><i class="pi pi-info-circle"></i
+          ></span>
+      </div>
     </li>
     }
   </ul>

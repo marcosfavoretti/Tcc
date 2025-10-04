@@ -3,21 +3,24 @@
  * Do not edit manually.
  */
 
-import type { TipoAlgoritmo } from './TipoAlgoritmo.ts'
+import type { MetricaDto } from './MetricaDto.ts'
 
 export type AlgoritmosResponseDto = {
   /**
    * @description Alias do algoritmo que sera utilizado
    * @type string
    */
-  algoritmo: TipoAlgoritmo
+  algoritmo: string
+  /**
+   * @description Ruas para traçar
+   * @type array
+   */
+  caminho: [number, number][]
   /**
    * @description Objeto com as metricas dos algoritmos
-   * @type object
+   * @type array
    */
-  metricas: {
-    [key: string]: string
-  }
+  metricas: MetricaDto[]
   /**
    * @description menor caminho em (m)
    * @type number
