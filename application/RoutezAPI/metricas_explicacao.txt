@@ -1,0 +1,18 @@
+
+Explicação das Métricas dos Algoritmos
+
+Este documento detalha o funcionamento e o propósito de cada arquivo de métrica encontrado em 'src/services/'.
+
+2. metrica_memoria.py (UsoMemoria)
+   - Como funciona: Utiliza a biblioteca 'tracemalloc' do Python para monitorar o uso de memória RAM. Ele inicia o monitoramento antes da execução do algoritmo e captura o pico de memória (peak) ao final.
+   - Para que serve: Mede a eficiência do algoritmo em termos de consumo de memória, informando o pico de MB utilizados. Ajuda a identificar gargalos de memória e a otimizar o código.
+
+3. metrica_preco.py (MetricaPreco)
+   - Como funciona: Estima o custo financeiro para executar um algoritmo em provedores de nuvem (AWS Braket). O cálculo varia com o recurso:
+     - QPU (Quantum Processing Unit): Custo é a soma de uma taxa por 'task' (tarefa) e uma taxa por 'shot' (repetição).
+     - Simulador/CPU: Custo é baseado no tempo de execução em minutos.
+   - Para que serve: Fornece uma estimativa de custo em Reais (BRL) para a execução da solução, permitindo a comparação de custos entre diferentes algoritmos e plataformas.
+
+4. tempo de exeucao
+   - Como funciona: cronometra o tempo que o algoritmo demora para resolver o problema
+   - para que serve: fornece uma estimativa de quanto tempo o algoritmos demorou para resolver o problema

@@ -18,7 +18,7 @@ class TempoExecucao(MetricasBase):
             raise Exception('metrica de tempo mal executada')
 
         tempo_decorrido = self._fim - self._inicio
-        
+        print('tempooooooo', tempo_decorrido)
         # Formata o resultado para ter 4 casas decimais e adiciona " s" no final
         value =  f"{tempo_decorrido:.4f} s"
         return MetricaDto(name="Tempo de execução",description=self.get_description(), result=value)

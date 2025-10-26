@@ -6,18 +6,22 @@ from services.algoritmo_qaoa_amazon import get_algoritmo_QAOA_Amazon
 from services.simulate_annealing import get_algoritmo_SA
 from services.algoritmo_iqaoa_amazon import get_algoritmo_IQAOA_Amazon
 from typing import List
+from services.algoritmo_iqaoa_amazon_simulador import get_algoritmo_IQAOA_AmazonSim
+from services.algoritmo_iqaoa_amazon_upload import get_algoritmo_IQAOA_AmazonSimUpload
 class FabricaAlgoritmosService:
     
     @staticmethod
     def algoritmosRegistrados() -> List[AlgoritmoBase]:
         """Retorna uma lista com uma instância de cada algoritmo disponível."""
         return [
+            get_algoritmo_IQAOA_AmazonSimUpload(),
             get_forca_bruta_service(),
             get_algoritmo_IQAOA_Amazon(),
             get_algoritmo_genetico(),
-            get_algoritmo_QAOA(),
+            # get_algoritmo_QAOA(),
             get_algoritmo_QAOA_Amazon(),
-            get_algoritmo_SA()
+            get_algoritmo_SA(),
+            get_algoritmo_IQAOA_AmazonSim()
         ]
 
     @staticmethod

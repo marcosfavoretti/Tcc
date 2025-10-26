@@ -3,16 +3,34 @@ from core.dto.algoritmos_response_dto import MetricaDto
 
 class MetricaQubits(MetricasBase):
 
-    def get_description(self):
-        return "quantidades de qubits para o circuito funcionar\n qubits = pontos^2"
+    def __init__(self, tipo: str):
+        super().__init__()
+        self.tipo = tipo
 
-    def on_inicio_execucao(self, algoritmo):
+    def get_description(self):
+        if self.tipo == 'QAOA':
+            return "Quantidade de qubits para o circuito funcionar (codificação n^2).\n qubits = pontos^2"
+        elif self.tipo == 'IQAOA':
+            return "Quantidade de qubits para o circuito funcionar (codificação n).\n qubits = pontos"
+        return "Quantidade de qubits para o circuito funcionar."
+
+    def on_inicio_execucao(self, _algoritmo):
         pass
     
-    def on_fim_execucao(self, algoritmo, melhorCaminho, distancia):
-        pontos = len(melhorCaminho)-1 # -1 pq aqui estou retornando o ciclo inteiro, incluindo o primeiro ponto ida e volta
-        self.value = pontos*pontos #no algoritmo o valor 1 signifca a medicao final do sistema
+    def on_fim_execucao(self, _algoritmo, melhorCaminho, _distancia):
+        if not melhorCaminho:
+            self.value = 0
+            return
 
+        # -1 porque a rota é um ciclo, retornando ao ponto inicial
+        pontos = len(melhorCaminho) - 1
+        
+        if self.tipo == 'QAOA':
+            self.value = pontos * pontos
+        elif self.tipo == 'IQAOA':
+            self.value = pontos
+        else:
+            self.value = 0
 
     def resultadoFinal(self) -> MetricaDto:
-        return MetricaDto(name="Qtd. de qubits no circuito",description=self.get_description(), result=str(self.value))
+        return MetricaDto(name="Qtd. de qubits no circuito", description=self.get_description(), result=str(self.value))

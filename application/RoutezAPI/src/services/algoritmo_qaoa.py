@@ -301,7 +301,7 @@ def get_algoritmo_QAOA() -> AlgoritmoQAOA:
     service.adicionar_metrica(SequenciaExecucao())
     service.adicionar_metrica(Distancia())
     service.adicionar_metrica(MetricaPreco(tipo_recurso='qpu', provider='anka'))
-    service.adicionar_metrica(MetricaQubits())
+    service.adicionar_metrica(MetricaQubits(tipo="QAOA"))
     service.adicionar_metrica(MetricaQuantidadeTaskQuanticas())
     service.adicionar_metrica(MetricaQuantidadeShotsQuanticas())
     # service.adicionar_metrica(UsoMemoria())

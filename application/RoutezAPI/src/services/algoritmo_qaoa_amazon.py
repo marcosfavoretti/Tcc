@@ -26,16 +26,16 @@ class AlgoritmoQAOAAmazon(AlgoritmoBase):
     locale = ''
     # --- Painel de Controle ---
     _REPS = 1
-    _OPTIMIZER_MAX_ITER = 1
+    _OPTIMIZER_MAX_ITER = 50
     _OPTIMIZER_METHOD = 'Nelder-Mead'
     _PENALTY_FACTOR = 1000.0
-    _TOTAL_SHOTS_FINAL = 1
+    _TOTAL_SHOTS_FINAL = 2_000
 
     # --- CHAVE PRINCIPAL: Alterne entre Simulador e Nuvem ---
     _USE_QPU = False  # Mude para True para executar na AWS. Requer ARN e S3 preenchidos.
     
     # --- Configurações para Execução em Hardware Real (AWS Braket) ---
-    _QPU_ARN = "default.qpu"  # PREENCHA com o ARN da QPU desejada
+    _QPU_ARN = "lightning.qubit"  # PREENCHA com o ARN da QPU desejada
     _S3_BUCKET = "" # PREENCHA com o nome do seu bucket S3
     
     def __init__(self):
@@ -178,19 +178,28 @@ class AlgoritmoQAOAAmazon(AlgoritmoBase):
         )
         
     def _qaoa_circuito(self, params: np.ndarray, cost_h: qml.Hamiltonian, mixer_h: qml.Hamiltonian, n_qubits: int):
-        """Define a estrutura do circuito QAOA. Esta função é reutilizada por múltiplos QNodes."""
+        """
+        Define a estrutura do circuito QAOA (ansatz) usando operações explícitas
+        para garantir compatibilidade com hardware real (AWS Braket).
+        """
+        # O Scipy Optimizer trabalha com um array 1D, então separamos os parâmetros aqui.
         gammas = params[:self._REPS]
         betas = params[self._REPS:]
         
-        # 1. Inicia em estado de superposição uniforme
+        # 1. Inicia em estado de superposição uniforme (sem alteração)
         for i in range(n_qubits):
             qml.Hadamard(wires=i)
             
-        # 2. Aplica as camadas de custo e mixer usando um loop padrão
-        # Esta é a forma correta e mais clara de construir o ansatz QAOA.
+        # 2. Aplica as camadas de custo e mixer
         for i in range(self._REPS):
-            qml.qaoa.cost_layer(gammas[i], cost_h)
-            qml.qaoa.mixer_layer(betas[i], mixer_h)
+            # --- CORREÇÃO APLICADA AQUI ---
+            # Substituímos qml.qaoa.cost_layer pela sua forma explícita e robusta.
+            qml.ApproxTimeEvolution(cost_h, gammas[i], 1)
+            
+            # Substituímos qml.qaoa.mixer_layer pela sua decomposição em gates RX.
+            # Isso é matematicamente equivalente para o mixer padrão e muito mais compatível.
+            for wire_idx in range(n_qubits):
+                qml.RX(2 * betas[i], wires=wire_idx)
             
     def adjacency_matrix_to_hamiltonian(self, adj_matrix: np.ndarray) -> Tuple[qml.Hamiltonian, qml.Hamiltonian]:
         """Converte a matriz de adjacência do TSP para Hamiltonianos de custo e mixer."""
@@ -290,7 +299,7 @@ def get_algoritmo_QAOA_Amazon() -> AlgoritmoQAOAAmazon:
     service.adicionar_metrica(SequenciaExecucao())
     service.adicionar_metrica(Distancia())
     service.adicionar_metrica(MetricaPreco(tipo_recurso='qpu', provider='anka'))
-    service.adicionar_metrica(MetricaQubits())
+    service.adicionar_metrica(MetricaQubits(tipo="QAOA"))
     service.adicionar_metrica(MetricaQuantidadeTaskQuanticas())
     service.adicionar_metrica(MetricaQuantidadeShotsQuanticas())
 
