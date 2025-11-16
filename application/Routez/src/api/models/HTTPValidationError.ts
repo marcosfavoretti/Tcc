@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { ValidationError } from './ValidationError.ts'
+import type { ValidationError } from './ValidationError'
 
 export type HTTPValidationError = {
   /**

@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { MetricaDto } from './MetricaDto.ts'
+import type { MetricaDto } from './MetricaDto'
 
 export type AlgoritmosResponseDto = {
   /**

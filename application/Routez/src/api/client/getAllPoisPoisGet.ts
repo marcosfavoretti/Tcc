@@ -5,7 +5,7 @@
 
 import fetch from '@kubb/plugin-client/clients/axios'
 import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { GetAllPoisPoisGetQueryResponse } from '../models/GetAllPoisPoisGet.ts'
+import type { GetAllPoisPoisGetQueryResponse } from '../models/GetAllPoisPoisGet'
 
 function getGetAllPoisPoisGetUrl() {
   return `http://127.0.0.1:8000/pois` as const

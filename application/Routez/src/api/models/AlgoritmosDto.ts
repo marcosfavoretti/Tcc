@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { PontoDTO } from './PontoDTO.ts'
+import type { PontoDTO } from './PontoDTO'
 
 export type AlgoritmosDto = {
   /**

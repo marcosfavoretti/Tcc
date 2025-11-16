@@ -3,9 +3,9 @@
  * Do not edit manually.
  */
 
-import type { AlgoritmosDto } from './AlgoritmosDto.ts'
-import type { AlgoritmosResponseDto } from './AlgoritmosResponseDto.ts'
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { AlgoritmosDto } from './AlgoritmosDto'
+import type { AlgoritmosResponseDto } from './AlgoritmosResponseDto'
+import type { HTTPValidationError } from './HTTPValidationError'
 
 /**
  * @description Successful Response

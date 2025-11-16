@@ -6,7 +6,7 @@ import { enviorment } from './enviorment'
 
 export default defineConfig(() => ({
     input: { path: enviorment.API_SWAGGER },
-    output: { path: './src/api' },
+    output: { path: './src/api', extension: "" },
     plugins: [
         pluginOas({
             output: false,

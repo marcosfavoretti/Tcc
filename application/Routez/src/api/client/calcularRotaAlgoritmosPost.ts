@@ -9,7 +9,7 @@ import type {
   CalcularRotaAlgoritmosPostMutationRequest,
   CalcularRotaAlgoritmosPostMutationResponse,
   CalcularRotaAlgoritmosPost422,
-} from '../models/CalcularRotaAlgoritmosPost.ts'
+} from '../models/CalcularRotaAlgoritmosPost'
 
 function getCalcularRotaAlgoritmosPostUrl() {
   return `http://127.0.0.1:8000/algoritmos/` as const

@@ -5,7 +5,7 @@
 
 import fetch from '@kubb/plugin-client/clients/axios'
 import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { AlgoritmosDisponiveisAlgoritmosGetQueryResponse } from '../models/AlgoritmosDisponiveisAlgoritmosGet.ts'
+import type { AlgoritmosDisponiveisAlgoritmosGetQueryResponse } from '../models/AlgoritmosDisponiveisAlgoritmosGet'
 
 function getAlgoritmosDisponiveisAlgoritmosGetUrl() {
   return `http://127.0.0.1:8000/algoritmos/` as const

@@ -5,7 +5,7 @@
 
 import fetch from '@kubb/plugin-client/clients/axios'
 import type { RequestConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { PingGetQueryResponse } from '../models/PingGet.ts'
+import type { PingGetQueryResponse } from '../models/PingGet'
 
 function getPingGetUrl() {
   return `http://127.0.0.1:8000/` as const
