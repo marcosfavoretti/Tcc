@@ -31,7 +31,7 @@ class AlgoritmoProcessadorJson(AlgoritmoBase):
     TIPO_ALGORITMO = "IQAOA Quântico"
 
     # --- CONFIGURAÇÃO ---
-    _ARQUIVO_RESULTADOS_PATH = "C:/Users/marco/OneDrive/Documentos/TCC/dev/application/RoutezAPI/src/services/results_amazon/tsp-10.json"  # Caminho para o arquivo JSON
+    _ARQUIVO_RESULTADOS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results_amazon", "tsp-20-pontos.json")
 
     def __init__(self):
         super().__init__()

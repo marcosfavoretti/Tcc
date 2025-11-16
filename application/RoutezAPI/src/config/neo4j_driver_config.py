@@ -14,11 +14,12 @@ class Neo4jSingleton:
     def get_driver(cls) -> Graph:
         user = os.getenv('DB_USER')
         password = os.getenv('DB_PASS')
+        host = os.getenv('DB_HOST', "bolt://neo4jTcc:7687")
         if cls._instance is None:
             with cls._lock:
                 if cls._instance is None:
                     cls._instance = Graph(
-                        "bolt://localhost:7687",
+                        host,
                         auth=(user, password),
                     )
         return cls._instance
@@ -26,5 +27,4 @@ class Neo4jSingleton:
     @classmethod
     def close(cls):
         if cls._instance is not None:
-            cls._instance.close()
             cls._instance = None

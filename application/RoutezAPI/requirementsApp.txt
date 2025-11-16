@@ -29,6 +29,7 @@ dill==0.4.0
 dnspython==2.8.0
 email-validator==2.3.0
 fastapi==0.117.1
+fastapi[standard]==0.117.1
 fastapi-cli==0.0.13
 fastapi-cloud-cli==0.2.1
 fonttools==4.60.0
