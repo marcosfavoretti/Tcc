@@ -7,11 +7,48 @@ services:
       - NEO4JLABS_PLUGINS=["apoc"]
       - APOC_IMPORT_FILE_ENABLED=true
       - NEO4J_apoc_import_file_use__neo4j__config=true
-      - NEO4J_dbms_security_procedures_unrestricted=apoc.\\\* \
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.\\\* 
     volumes:
       - neo4j_data:/data
     ports:
       - "7474:7474"
       - "7687:7687"
+    networks:
+      - tcc-network
+
+  backend:
+    build:
+      context: ./application/RoutezAPI
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./application/RoutezAPI/src:/app/src
+    environment:
+      - DB_HOST=bolt://neo4jTcc:7687
+      - DB_USER=neo4j
+      - DB_PASS=test
+    depends_on:
+      - neo4j
+    networks:
+      - tcc-network
+
+  frontend:
+    build:
+      context: ./application/Routez
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - tcc-network
+
 volumes:
   neo4j_data:
+
+networks:
+  tcc-network:
+    driver: bridge

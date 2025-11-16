@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  # Este serviço constrói a aplicação Angular e a reconstrói quando há mudanças.
+  builder:
+    image: node:20-alpine
+    container_name: angular_builder
+    working_dir: /app
+    volumes:
+      # Mapeia o código-fonte. A pasta 'dist' será criada dentro de 'frontend' no host.
+      - ./frontend:/app 
+    # Instala dependências e constrói o projeto. O --watch reconstrói ao salvar.
+    command: sh -c "npm install && ng build --watch"
+
+  # Este serviço serve os arquivos estáticos construídos pelo 'builder'
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_server
+    ports:
+      - "80:80"
+    volumes:
+      # Mapeia a saída do build para a pasta web do Nginx.
+      - ./frontend/dist:/usr/share/nginx/html
+      # Mapeia a configuração do Nginx.
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - builder
