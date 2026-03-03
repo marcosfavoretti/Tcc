@@ -26,10 +26,9 @@ Este projeto implementa e compara algoritmos para o Problema do Caixeiro Viajant
 ### Clonar o Repositório
 
 ```bash
-git clone <URL_DO_SEU_REPOSITORIO>
+git clone https://github.com/marcosfavoretti/Tcc.git
 cd TCC
 ```
-*Substitua `<URL_DO_SEU_REPOSITORIO>` pela URL real do seu repositório.*
 
 ### Iniciar a Aplicação
 
